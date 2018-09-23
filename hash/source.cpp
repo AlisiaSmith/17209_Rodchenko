@@ -9,9 +9,9 @@ void help()
 
 }
 
-int execution(string cmd)
+int execution(string cmd, HashTable Table)
 {
-
+	
 	return 0;
 }
 
@@ -32,7 +32,7 @@ int main ()
 		cin >> cmd; cout << endl;
 		if (cmd == "exit") break;
 		
-		if (!execution(cmd)) error();
+		if (!execution(cmd, MyTable)) error();
 		
 
 	} while (true);

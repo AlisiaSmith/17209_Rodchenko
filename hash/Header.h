@@ -1,7 +1,9 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
-#include <string>
+#include <cstring> // for strcpy
+#include <string> 
 #include <stdlib.h>
 
 using namespace std;
@@ -12,9 +14,9 @@ class Person
 {
 private:
 	string name;
-	string key;
 	int point;
 public:
+	bool ex = false;
 	Person();
 	~Person();
 };
@@ -27,9 +29,10 @@ private:
 	Person *list;
 public:
 	HashTable(int N = 100);
-	void recount(int new_q);
-	void add_el(string key);
-	void del_el(string key);
-	Person* serch(string key);
+	int verify(int pos = 0);
+	void recount_list(int);
+	void add_el(string);
+	void del_el(string);
+	Person* serch(string);
 	~HashTable();
 };
