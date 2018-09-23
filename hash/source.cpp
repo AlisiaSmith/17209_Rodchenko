@@ -4,9 +4,20 @@
 
 #include "Header.h"
 
-void execution(string cmd)
+void help()
 {
 
+}
+
+int execution(string cmd)
+{
+
+	return 0;
+}
+
+void error() 
+{
+	cout << "The command is wrong." << endl << "Ener a \"help\" to get instruction." << endl;
 }
 
 int main ()
@@ -20,7 +31,8 @@ int main ()
 	do {
 		cin >> cmd; cout << endl;
 		if (cmd == "exit") break;
-
+		
+		if (!execution(cmd)) error();
 		
 
 	} while (true);
