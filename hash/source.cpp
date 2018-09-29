@@ -25,7 +25,7 @@ int main ()
 	int count_nambers = 0;
 	cin >> count_nambers; cout << endl;
 	
-	HashTable MyTable(count_nambers);
+	HashTable MyTable();
 	string cmd;
 	
 	do {
