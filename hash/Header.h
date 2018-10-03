@@ -2,7 +2,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
-#include <cstring> // for strcpy
 #include <string> 
 #include <stdlib.h>
 
@@ -23,7 +22,7 @@ private:
 	
 public:
 	HashTable(const HashTable& b);
-
+	
 	// Обменивает значения двух хэш-таблиц
 	void swap(HashTable& b);
 	
@@ -58,3 +57,5 @@ public:
 	
 	//~HashTable();
 };
+
+int hash_count(const Key& k);

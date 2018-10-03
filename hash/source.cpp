@@ -15,6 +15,11 @@ int execution(string cmd, HashTable Table)
 	return 0;
 }
 
+int hash_count(const Key& k)
+{
+
+}
+
 void error() 
 {
 	cout << "The command is wrong." << endl << "Ener a \"help\" to get instruction." << endl;
@@ -25,7 +30,7 @@ int main ()
 	int count_nambers = 0;
 	cin >> count_nambers; cout << endl;
 	
-	HashTable MyTable();
+	HashTable MyTable(&);
 	string cmd;
 	
 	do {

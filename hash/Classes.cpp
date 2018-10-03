@@ -1,24 +1,58 @@
 #include "Header.h"
 
-int count_hash(string key)
+HashTable::HashTable(const HashTable& b)
 {
-	char *str = new char[key.length() + 1];
-	strcpy(str, key.c_str());
 
-	int hash = 0;
-	for (int i = 0; i < key.length(); i++)
-		hash += ((int)str[i] % 257) * (i % 23);
-	return hash;
 }
 
-int recount_hash(int old_hash)
+void HashTable::swap(HashTable& b)
 {
-	int new_hash = old_hash;
-
-
-
-
-	return new_hash;
+	
 }
-// то, что выше - вынести в новый фаил
 
+HashTable& HashTable::operator=(const HashTable& b)
+{
+
+}
+
+void HashTable::clear()
+{
+
+}
+
+bool HashTable::erase(const Key& k)
+{
+
+}
+
+
+bool HashTable::insert(const Key& k, const Value& v)
+{
+
+}
+
+
+bool HashTable::contains(const Key& k) const
+{
+
+}
+
+Value& HashTable::operator[](const Key& k)
+{
+
+}
+
+const Value& HashTable::at(const Key& k) const
+{
+
+}
+
+size_t HashTable::size() const
+{
+
+}
+
+bool HashTable::empty() const
+{
+
+}
