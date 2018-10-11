@@ -1,4 +1,3 @@
-#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
@@ -11,6 +10,7 @@ typedef string Key;
 struct Value {
 	unsigned age;
 	unsigned weight;
+	Key k;
 };
 
 
@@ -19,13 +19,14 @@ class HashTable
 private:
 	int quantity;
 	int used;
-
+	Value *list;
 public:
-	HashTable(const HashTable& b);
+	HashTable(int size);
+  ~HashTable();
+
+	HashTable(const HashTable& other);
 
 	// Обменивает значения двух хэш-таблиц.
-  // Подумайте, зачем нужен этот метод, при наличии стандартной функции
-  // std::swap.
 	void swap(HashTable& b);
 
 	HashTable& operator=(const HashTable& b);
@@ -50,6 +51,9 @@ public:
 	// Возвращает значение по ключу. Бросает исключение при неудаче.
 	Value& at(const Key& k);
 	const Value& at(const Key& k) const;
+
+	void recount();
+
 
 	size_t size() const;
 	bool empty() const;

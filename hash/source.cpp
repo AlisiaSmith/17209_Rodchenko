@@ -11,7 +11,7 @@ void help()
 
 int execution(string cmd, HashTable Table)
 {
-	
+
 	return 0;
 }
 
@@ -20,27 +20,25 @@ int hash_count(const Key& k)
 
 }
 
-void error() 
+void error()
 {
 	cout << "The command is wrong." << endl << "Ener a \"help\" to get instruction." << endl;
 }
 
 int main ()
 {
-	int count_nambers = 0;
-	cin >> count_nambers; cout << endl;
-	
-	HashTable MyTable(&);
-	string cmd;
-	
-	do {
-		cin >> cmd; cout << endl;
-		if (cmd == "exit") break;
-		
-		if (!execution(cmd, MyTable)) error();
-		
-
-	} while (true);
-
+	//int count_nambers = 0;
+	//cin >> count_nambers; cout << endl;
+//
+//HashTable MyTable(&);
+//	string cmd;
+//
+	//do {
+	//	cin >> cmd; cout << endl;
+	//	if (cmd == "exit") break;
+//
+//
+	//} while (true);
+//
 	return 0;
 }
