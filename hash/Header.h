@@ -3,14 +3,27 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <vector>
+#include <math.h>
 
 using namespace std;
 typedef string Key;
- // характеристики студента
+// характеристики студента
 struct Value {
-	unsigned age;
-	unsigned weight;
+private:
 	Key k;
+	unsigned int age;
+	unsigned int weight;
+public:
+	Value();
+	Value(const Key name, unsigned int a, unsigned int w);
+	Value(const Value& v);
+	~Value();
+	const Key get_key() const;
+	Value& operator=(const Value& v);
+
+	//bool operator==(Value& v);
+	//friend bool opperatot!(const Value &v, const Value &t);
 };
 
 
@@ -22,7 +35,7 @@ private:
 	Value *list;
 public:
 	HashTable(int size);
-  ~HashTable();
+	~HashTable();
 
 	HashTable(const HashTable& other);
 
