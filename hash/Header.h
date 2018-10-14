@@ -8,7 +8,7 @@
 
 using namespace std;
 typedef string Key;
-// характеристики студента
+ // характеристики студента
 struct Value {
 private:
 	Key k;
@@ -20,10 +20,15 @@ public:
 	Value(const Value& v);
 	~Value();
 	const Key get_key() const;
+	const Key get_key();
+	void clear();
 	Value& operator=(const Value& v);
 
-	//bool operator==(Value& v);
-	//friend bool opperatot!(const Value &v, const Value &t);
+	bool operator==(Value& v) const;
+	bool operator==(Value *v) const;
+
+	bool operator!=(Value& v) const;
+	bool operator!=(Value *v) const;
 };
 
 

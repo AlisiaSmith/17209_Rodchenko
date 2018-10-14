@@ -18,11 +18,11 @@ int execution(string cmd, HashTable Table)
 
 int hash_count(const Key& k)
 {
-	unsigned int len = k.length();
+	unsigned int len = (unsigned int) k.length();
 	unsigned int hash = 0;
 	if (len > 15) len = 15;
 	vector <char> str(len);
-	for (int i = 0; i < len; ++i)
+	for (unsigned int i = 0; i < len; ++i)
 		hash = +(unsigned int)(k[i]*pow(3, i));
 	return hash;
 }
