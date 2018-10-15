@@ -14,6 +14,7 @@ private:
 	Key k;
 	unsigned int age;
 	unsigned int weight;
+
 public:
 	Value();
 	Value(const Key name, unsigned int a, unsigned int w);
@@ -29,6 +30,15 @@ public:
 
 	bool operator!=(Value& v) const;
 	bool operator!=(Value *v) const;
+};
+
+struct Pair {
+private:
+	Key k;
+	bool applyed;
+	Value *elem;
+public:
+
 };
 
 

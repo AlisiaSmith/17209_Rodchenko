@@ -19,20 +19,20 @@ Value& Value::operator=(const Value& v)
 }
 
 const Key Value::get_key() const {	return k; }
-const Key Value::get_key() { return k; } //+
+const Key Value::get_key() { return k; } 
 
 void Value::clear()
 {
 	k = "";
 	age = NULL;
 	weight = NULL;
-} //+
+} 
 
-bool Value::operator==(Value& v) const	{	return ((k == v.k) && (age == v.age) && (weight == v.weight));	} //+
-bool Value::operator==(Value *v) const { return this == v; } //+
+bool Value::operator==(Value& v) const	{	return ((k == v.k) && (age == v.age) && (weight == v.weight));	} 
+bool Value::operator==(Value *v) const { return this == v; }
 
-bool Value::operator!=(Value& v) const { return !((k == v.k) && (age == v.age) && (weight == v.weight)); } //+
-bool Value::operator!=(Value *v) const { return this != v; } //+
+bool Value::operator!=(Value& v) const { return !((k == v.k) && (age == v.age) && (weight == v.weight)); } 
+bool Value::operator!=(Value *v) const { return this != v; } 
 
 
 
@@ -85,7 +85,7 @@ bool HashTable::erase(const Key& k)
 	cout << "elem is deleted" << endl;
 	return true;
 	// пересмотреть элементы, идущие после данного и проверить, не нужно ли их переместить выше 
-} //+
+} 
 
 void HashTable::swap(HashTable& b)
 {
@@ -161,11 +161,8 @@ const Value& HashTable::at(const Key& k) const
 		if (list[(hash + i) % quantity].get_key() == k)		break;
 	return list[(hash + i) % quantity];
 }
-//
-////size_t HashTable::size() const
-////{
-////
-////}
+
+size_t HashTable::size() const { return used; }
 //
 //bool HashTable::empty() const
 //{
