@@ -1,9 +1,7 @@
 #include "Header.h"
 
 
-
 /*Value*/
-
 
 
 Value::Value() : k(""), age(0), weight(0) {}
@@ -21,20 +19,20 @@ Value& Value::operator=(const Value& v)
 }
 
 const Key Value::get_key() const {	return k; }
-const Key Value::get_key() { return k; } 
+const Key Value::get_key() { return k; } //+
 
 void Value::clear()
 {
 	k = "";
 	age = NULL;
 	weight = NULL;
-} 
+} //+
 
-bool Value::operator==(Value& v) const	{	return ((k == v.k) && (age == v.age) && (weight == v.weight));	} 
-bool Value::operator==(Value *v) const { return this == v; } 
+bool Value::operator==(Value& v) const	{	return ((k == v.k) && (age == v.age) && (weight == v.weight));	} //+
+bool Value::operator==(Value *v) const { return this == v; } //+
 
-bool Value::operator!=(Value& v) const { return !((k == v.k) && (age == v.age) && (weight == v.weight)); } 
-bool Value::operator!=(Value *v) const { return this != v; } 
+bool Value::operator!=(Value& v) const { return !((k == v.k) && (age == v.age) && (weight == v.weight)); } //+
+bool Value::operator!=(Value *v) const { return this != v; } //+
 
 
 
@@ -89,6 +87,21 @@ bool HashTable::erase(const Key& k)
 	// пересмотреть элементы, идущие после данного и проверить, не нужно ли их переместить выше 
 } //+
 
+void HashTable::swap(HashTable& b)
+{
+	Value* tmp_l = list;
+	int tmp_q = quantity;
+	int tmp_u = used;
+
+	list = b.list;
+	quantity = b.quantity;
+	used = b.quantity;
+
+	b.list = tmp_l;
+	b.quantity = tmp_q;
+	b.used = tmp_u;
+}
+
 
 void HashTable::recount() 
 {
@@ -118,6 +131,7 @@ bool HashTable::insert(const Key& k, const Value& v)
 		return true;
 }
 
+
 bool HashTable::contains(const Key& k) const
 {
 	int hash = hash_count(k);
@@ -125,3 +139,36 @@ bool HashTable::contains(const Key& k) const
 			if(list[(hash +i) % quantity].get_key() == k) return true;
 	return false;
 }
+
+Value& HashTable::operator[](const Key& k)
+{
+	Value tmp;
+	if (!contains(k)) return tmp;
+	int hash = hash_count(k);
+	int i = 0;
+	for (i; i < quantity; ++i)
+		if (list[(hash + i) % quantity].get_key() == k)		break;
+	return list[(hash + i) % quantity];
+}
+
+const Value& HashTable::at(const Key& k) const
+{
+	Value tmp;
+	if (!contains(k)) return tmp;
+	int hash = hash_count(k);
+	int i = 0;
+	for (i; i < quantity; ++i)
+		if (list[(hash + i) % quantity].get_key() == k)		break;
+	return list[(hash + i) % quantity];
+}
+//
+////size_t HashTable::size() const
+////{
+////
+////}
+//
+//bool HashTable::empty() const
+//{
+//	return true;
+//}
+//
