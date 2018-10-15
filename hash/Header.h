@@ -12,6 +12,7 @@ typedef string Key;
 struct Value {
 private:
 	Key k;
+	string name;
 	unsigned int age;
 	unsigned int weight;
 
@@ -22,7 +23,6 @@ public:
 	~Value();
 	const Key get_key() const;
 	const Key get_key();
-	void clear();
 	Value& operator=(const Value& v);
 
 	bool operator==(Value& v) const;
@@ -35,10 +35,17 @@ public:
 struct Pair {
 private:
 	Key k;
-	bool applyed;
 	Value *elem;
 public:
+	bool flag;														
+	Pair();
+	~Pair();
 
+	Pair& operator=(Pair & p);
+	
+	const Key get_key() const;
+	const Key get_key();
+	void clear();
 };
 
 
@@ -47,7 +54,7 @@ class HashTable
 private:
 	int quantity;
 	int used;
-	Value *list;
+	Pair *list;
 public:
 	HashTable(int size);
 	~HashTable();
