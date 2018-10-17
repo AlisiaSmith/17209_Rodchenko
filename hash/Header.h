@@ -11,7 +11,6 @@ typedef string Key;
  // характеристики студента
 struct Value {
 private:
-	Key k;
 	string name;
 	unsigned int age;
 	unsigned int weight;
@@ -44,8 +43,18 @@ public:
 	Pair& operator=(Pair & p);
 	
 	const Key get_key() const;
-	const Key get_key();
+	Key get_key();
+	
+	void insert(const Value& v);
+	void insert(Value& v);
+	void insert();
+
+	Value& get_value() const;
+
 	void clear();
+	
+	friend bool operator==(const Pair& a, const Pair& b);
+
 };
 
 
@@ -55,6 +64,8 @@ private:
 	int quantity;
 	int used;
 	Pair *list;
+
+	Value& _at(const Key k) const;
 public:
 	HashTable(int size);
 	~HashTable();
@@ -87,7 +98,7 @@ public:
 	Value& at(const Key& k);
 	const Value& at(const Key& k) const;
 
-	void recount();
+	void resize();
 
 
 	size_t size() const;
