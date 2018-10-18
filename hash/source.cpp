@@ -4,24 +4,12 @@
 
 #include "Header.h"
 
-void help()
-{
-
-}
-
-int execution(string cmd, HashTable Table)
-{
-
-
-	return 0;
-}
 
 int hash_count(const Key& k)
 {
 	unsigned int len = (unsigned int) k.length();
 	unsigned int hash = 0;
 	if (len > 15) len = 15;
-	vector <char> str(len);
 	for (unsigned int i = 0; i < len; ++i)
 		hash = +(unsigned int)(k[i]*pow(3, i));
 	return hash;
@@ -34,18 +22,12 @@ void error()
 
 int main ()
 {
-	//int count_nambers = 0;
-	//cin >> count_nambers; cout << endl;
-//
-//HashTable MyTable(&);
-//	string cmd;
-//
-	//do {
-	//	cin >> cmd; cout << endl;
-	//	if (cmd == "exit") break;
-//
-//
-	//} while (true);
-//
+	const Value v("Anna", 17, 45);
+	const Value w("Ivan", 19, 66);
+	const Value x("Kate", 18, 52);
+	const Value y("Tony", 17, 58);
+
+	
+
 	return 0;
 }

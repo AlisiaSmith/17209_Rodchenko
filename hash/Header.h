@@ -8,7 +8,7 @@
 
 using namespace std;
 typedef string Key;
- // характеристики студента
+ 
 struct Value {
 private:
 	string name;
@@ -20,8 +20,6 @@ public:
 	Value(const Key name, unsigned int a, unsigned int w);
 	Value(const Value& v);
 	~Value();
-	const Key get_key() const;
-	const Key get_key();
 	Value& operator=(const Value& v);
 
 	bool operator==(Value& v) const;
@@ -53,8 +51,7 @@ public:
 
 	void clear();
 	
-	friend bool operator==(const Pair& a, const Pair& b);
-
+	bool operator==(const Pair& p) const;
 };
 
 

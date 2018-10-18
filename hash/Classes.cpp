@@ -14,7 +14,6 @@ Value::Value(const Value& v) : name(v.name), age(v.age), weight(v.weight) {}
 
 Value::~Value() {}
 
-
 Value& Value::operator=(const Value& v)
 {
 	name = v.name;
@@ -23,8 +22,7 @@ Value& Value::operator=(const Value& v)
 	return *this;
 }
 
-
-bool Value::operator==(Value& v) const	{	return ((name == v.name) && (age == v.age) && (weight == v.weight));	} 
+bool Value::operator==(Value& v) const { return ((name == v.name) && (age == v.age) && (weight == v.weight)); }
 bool Value::operator==(Value *v) const { return this == v; }
 
 bool Value::operator!=(Value& v) const { return !((name == v.name) && (age == v.age) && (weight == v.weight)); } 
@@ -48,7 +46,6 @@ Pair& Pair::operator=(Pair & p)
 	elem = p.elem; 
 	return *this;
 }
-
 
 const Key Pair::get_key() const { return k; }
 Key Pair::get_key() { return k; }
@@ -80,7 +77,7 @@ void Pair::clear()
 	delete elem;
 }
 
-
+bool Pair::operator==(const Pair& p) const { return ((k == p.k) && (elem == p.elem) &&(flag == p.flag)); }
 
 
 /*HashTable*/
@@ -91,7 +88,7 @@ void Pair::clear()
 HashTable::HashTable(int size = 100) : quantity(size), used(0) { list = new Pair[size]; }
 HashTable::HashTable(const HashTable& other) : quantity(other.quantity), used(other.used) { for (int i = 0; i < other.quantity; ++i)	list[i] = other.list[i]; }
 
-HashTable::~HashTable() { delete[] list; }
+HashTable::~HashTable() { clear(); }
 
 HashTable& HashTable::operator=(const HashTable& other)
 {
@@ -170,8 +167,6 @@ bool HashTable::contains(const Key& k) const
 	return false;
 }
 
-
-
 Value& HashTable::operator[](const Key& k)
 {
 	int hash = hash_count(k);
@@ -208,9 +203,5 @@ const Value& HashTable::at(const Key& k) const { return _at(k); }
 Value& HashTable::at(const Key& k) { return _at(k); }
 
 size_t HashTable::size() const { return used; }
-//
-//bool HashTable::empty() const
-//{
-//	return true;
-//}
-//
+
+bool HashTable::empty() const { return used == 0; }
