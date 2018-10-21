@@ -34,21 +34,25 @@ private:
 	Key k;
 	Value *elem;
 public:
+	unsigned int hash;
 	bool flag;														
+	
 	Pair();
 	~Pair();
 
-	Pair& operator=(Pair & p);
+	Pair& operator=(Pair& p);
 	
 	const Key get_key() const;
 	Key get_key();
-	
+	void put_key(const Key& t);
+	void put_key(Key& t);
+
 	void insert(const Value& v);
 	void insert(Value& v);
 	void insert();
 
-	Value& get_value() const;
-
+	const Value& get_value() const;
+	Value& get_value();
 	void clear();
 	
 	bool operator==(const Pair& p) const;
@@ -62,7 +66,8 @@ private:
 	int used;
 	Pair *list;
 
-	Value& _at(const Key k) const;
+	Value& _at(const Key& k) const;
+	int _find_num(const Key& k, int hash) const;
 public:
 	HashTable(int size);
 	~HashTable();
