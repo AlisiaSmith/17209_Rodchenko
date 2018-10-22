@@ -8,7 +8,7 @@
 
 
 
-Value::Value() : name(""), age(0), weight(0) {}
+Value::Value() : name("Ivanov Ivan Ivanivich"), age(23), weight(78) {}
 Value::Value(const Key name, unsigned int a, unsigned int w) : name(name), age(a), weight(w) {}
 Value::Value(const Value& v) : name(v.name), age(v.age), weight(v.weight) {}
 
@@ -21,6 +21,7 @@ Value& Value::operator=(const Value& v)
 	weight = v.weight;
 	return *this;
 }
+
 
 bool Value::operator==(Value& v) const { return ((name == v.name) && (age == v.age) && (weight == v.weight)); }
 bool Value::operator==(Value *v) const { return this == v; }
@@ -37,14 +38,26 @@ bool Value::operator!=(Value *v) const { return this != v; }
 
 
 Pair::Pair() {};
+Pair::Pair(Pair& p)
+{
+	elem = new Value;
+	*elem = *(p.elem);
+	hash = p.hash;
+	k = p.k;
+	flag = true;
+}
+Pair::Pair(Value& v, Key& k) : k(k) { insert(v); }
+Pair::Pair(const Value& v, const Key& k) : k(k) { insert(v); }
 Pair::~Pair() { if (elem != nullptr) delete elem; }
 
 Pair& Pair::operator=(Pair & p)
 {
 	if (*this == p) return *this;
 	if (elem != nullptr) delete elem;
-	elem = p.elem; 
+	elem = new Value;
+	*elem = *(p.elem); 
 	hash = p.hash;
+	k = p.k;
 	flag = true;
 	return *this;
 }
@@ -82,6 +95,7 @@ Value& Pair::get_value() { return *elem; }
 void Pair::clear()
 {
 	k.clear();
+	hash = NULL;
 	flag = false;
 	delete elem;
 }
@@ -190,7 +204,7 @@ void HashTable::swap(HashTable& b)
 void HashTable::resize() 
 {
 	Pair* new_list = new Pair[quantity * 2];
-	for (int i = 0; i < quantity; i++)		
+	for (int i = 0; i < quantity; i++)	// неправильно	
 		new_list[i] = list[i];
 	clear();
 	list = new_list;
@@ -206,18 +220,19 @@ bool HashTable::insert(const Key& k, const Value& v)
 	int hash = hash_count(k);
 	
 	int i = 0;
+	Pair p(v,k);
+	Pair tp;
+	int th = hash;
 	for (i = 0; i < quantity; i++)
-		if (list[(hash + i) % quantity].flag == false) //true?
-		{
-			int tmp_hash = (list[(hash + i) % quantity].hash) % quantity;
-			if (hash == tmp_hash) continue;
-			else
-			{
-
-			}
-		}
-	list[(hash + i) % quantity].put_key(k);
-	list[(hash + i) % quantity].insert(v);
+	{
+		if (list[(hash + i) % quantity].flag == false)	break;
+		int tmp_hash = (list[(hash + i) % quantity].hash);
+		if (th % quantity == tmp_hash % quantity) continue;
+		tp = list[(hash + i) % quantity];
+		list[(hash + i) % quantity] = p;
+		th = tmp_hash;
+	}
+	list[(hash + i) % quantity] = p;
 	used++;
 	return true;
 }

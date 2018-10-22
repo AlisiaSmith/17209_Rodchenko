@@ -38,6 +38,9 @@ public:
 	bool flag;														
 	
 	Pair();
+	Pair(Pair& p);
+	Pair(Value& v, Key& k);
+	Pair(const Value& v, const Key& k);
 	~Pair();
 
 	Pair& operator=(Pair& p);
