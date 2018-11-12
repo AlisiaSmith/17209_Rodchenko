@@ -1,0 +1,30 @@
+Classes.cpp: In member function ‘bool HashTable::erase(const Key&)’:
+Classes.cpp:71:8: warning: statement has no effect [-Wunused-value]
+  for (i; i < quantity; ++i)
+        ^
+Classes.cpp: In member function ‘bool HashTable::insert(const Key&, const Value&)’:
+Classes.cpp:112:6: warning: unused variable ‘hash’ [-Wunused-variable]
+  int hash = hash_count(k);
+      ^~~~
+Classes.cpp: In member function ‘bool HashTable::contains(const Key&) const’:
+Classes.cpp:130:6: warning: unused variable ‘hash’ [-Wunused-variable]
+  int hash = hash_count(k);
+      ^~~~
+/tmp/cc9WrWPX.o: In function `HashTable::HashTable(int)':
+Classes.cpp:(.text+0x3bf): undefined reference to `Pair::Pair()'
+Classes.cpp:(.text+0x40e): undefined reference to `Pair::~Pair()'
+/tmp/cc9WrWPX.o: In function `HashTable::HashTable(HashTable const&)':
+Classes.cpp:(.text+0x4e5): undefined reference to `Pair::operator=(Pair&)'
+/tmp/cc9WrWPX.o: In function `HashTable::~HashTable()':
+Classes.cpp:(.text+0x549): undefined reference to `Pair::~Pair()'
+/tmp/cc9WrWPX.o: In function `HashTable::operator=(HashTable const&)':
+Classes.cpp:(.text+0x604): undefined reference to `Pair::~Pair()'
+Classes.cpp:(.text+0x6a5): undefined reference to `Pair::Pair()'
+Classes.cpp:(.text+0x714): undefined reference to `Pair::operator=(Pair&)'
+Classes.cpp:(.text+0x765): undefined reference to `Pair::~Pair()'
+/tmp/cc9WrWPX.o: In function `HashTable::recount()':
+Classes.cpp:(.text+0xa3b): undefined reference to `Pair::Pair()'
+Classes.cpp:(.text+0xaa5): undefined reference to `Pair::operator=(Pair&)'
+Classes.cpp:(.text+0xaf9): undefined reference to `Pair::~Pair()'
+Classes.cpp:(.text+0xb86): undefined reference to `Pair::~Pair()'
+collect2: error: ld returned 1 exit status
