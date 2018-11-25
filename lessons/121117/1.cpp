@@ -6,15 +6,7 @@
 //    ||||||||||||||
 // Управление ресурсами
 
-void f()
-{
-  throw 1;
-}
-
-void g()
-{
-  f();
-}
+#include<stdlib.h>
 
 struct A
 {
@@ -24,11 +16,12 @@ struct SmartPtrData
 {
   size_t counter = 0u; //unsigned
   A * ptr = nullptr;
-}
 
+bool operator==(const SmartPtrData& tmp) {  return (counter == tmp.counter) && (ptr == tmp.ptr);  }
+};
 // умный указатель
 // по-желанию: template <class T>
-Class SmartPointer
+class SmartPointer
 {
 public:
 
@@ -65,16 +58,16 @@ public:
 
   SmartPointer& operator=(const SmartPointer& other)
   {
-    if(other == *this) return *this;
+    if(*this == other) return *this;
 
-    //if(this->spdata)
-    //  if( 1 == spdata->counter)
-    //  {
-    //      delete spdata->ptr;
-    //      delete spdata;
-    //  }
-    //    else spdata->counter --;
-    this.~SmartPointer();
+    if(spdata)
+      if( 1 == spdata->counter)
+      {
+          delete spdata->ptr;
+          delete spdata;
+      }
+        else spdata->counter--;
+  //  this.~SmartPointer();
 
     spdata = other.spdata;
     spdata->counter++;
@@ -91,21 +84,31 @@ public:
 
   void reset(A * other)
   {
-    delete spdata->ptr;
+    if (!spdata)
+    {
+      spdata = new SmartPtrData;
+      spdata->counter = 1u;
+    }
+    else       delete spdata->ptr;
     spdata->ptr = other;
   } // освободить старый ресурс, захватить новый
 
+  SmartPtrData& operator*() { return *spdata; }
+  SmartPtrData* operator->() { return spdata; }
   //operator*, operator ->
 
+  bool operator==(const SmartPointer& tmp) const {  return spdata == tmp.spdata;  }
+
+
 private:
-  SmartPtrData * spdata = nullptr;
-}
+  SmartPtrData *spdata = nullptr;
+};
 
 int main ()
 {
 //  std::ifstream f("input.txt", "r");
-  SmartPointer sp(new int);
-  SmartPointer sp2 = sp;
+//  SmartPointer sp(new int);
+//  SmartPointer sp2 = sp;
   // вар 1. Разрушающее копирование, уже реалиован нами, есть в библиотеке (std::auto_ptr), но запрещен к использованию
   // вар 2. Глобальная хэш-таблица хранит флажки на каждый ресурс
   // вар 3. флажок хранить прямо на месте (std::shared_ptr) + нюансы
@@ -114,9 +117,6 @@ int main ()
   // вар 6. запретить копирование
   // вар 7. запретить копирование, но разрешить перемещение (std::unique_ptr)
   // std::move(sp) ???
-
-
-  g();
 
   return 0;
 }
