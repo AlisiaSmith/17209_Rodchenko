@@ -1,66 +1,6 @@
-#define _CRT_SECURE_NO_WARNINGS
+#pragma once
 
-#include <iostream>
-#include <string>
-#include <stdlib.h>
-#include <vector>
-#include <math.h>
-
-using namespace std;
-typedef string Key;
- 
-struct Value {
-private:
-	string name;
-	unsigned int age;
-	unsigned int weight;
-
-public:
-	Value();
-	Value(const Key name, unsigned int a, unsigned int w);
-	Value(const Value& v);
-	~Value();
-	Value& operator=(const Value& v);
-
-	bool operator==(Value& v) const;
-	bool operator==(Value *v) const;
-
-	bool operator!=(Value& v) const;
-	bool operator!=(Value *v) const;
-};
-
-struct Pair {
-private:
-	Key k;
-	Value *elem;
-public:
-	unsigned int hash;
-	bool flag;														
-	
-	Pair();
-	Pair(Pair& p);
-	Pair(Value& v, Key& k);
-	Pair(const Value& v, const Key& k);
-	~Pair();
-
-	Pair& operator=(Pair& p);
-	
-	const Key get_key() const;
-	Key get_key();
-	void put_key(const Key& t);
-	void put_key(Key& t);
-
-	void insert(const Value& v);
-	void insert(Value& v);
-	void insert();
-
-	const Value& get_value() const;
-	Value& get_value();
-	void clear();
-	
-	bool operator==(const Pair& p) const;
-};
-
+#include "Header.h"
 
 class HashTable
 {

@@ -1,111 +1,4 @@
-#include "Header.h"
-
-
-
-
-/*Value*/
-
-
-
-
-Value::Value() : name("Ivanov Ivan Ivanivich"), age(23), weight(78) {}
-Value::Value(const Key name, unsigned int a, unsigned int w) : name(name), age(a), weight(w) {}
-Value::Value(const Value& v) : name(v.name), age(v.age), weight(v.weight) {}
-
-Value::~Value() {}
-
-Value& Value::operator=(const Value& v)
-{
-	name = v.name;
-	age = v.age;
-	weight = v.weight;
-	return *this;
-}
-
-
-bool Value::operator==(Value& v) const { return ((name == v.name) && (age == v.age) && (weight == v.weight)); }
-bool Value::operator==(Value *v) const { return this == v; }
-
-bool Value::operator!=(Value& v) const { return !((name == v.name) && (age == v.age) && (weight == v.weight)); } 
-bool Value::operator!=(Value *v) const { return this != v; } 
-
-
-
-
-/*Pair*/
-
-
-
-
-Pair::Pair() {};
-Pair::Pair(Pair& p)
-{
-	elem = new Value;
-	*elem = *(p.elem);
-	hash = p.hash;
-	k = p.k;
-	flag = true;
-}
-Pair::Pair(Value& v, Key& k) : k(k) { insert(v); }
-Pair::Pair(const Value& v, const Key& k) : k(k) { insert(v); }
-Pair::~Pair() { if (elem != nullptr) delete elem; }
-
-Pair& Pair::operator=(Pair & p)
-{
-	if (*this == p) return *this;
-	if (elem != nullptr) delete elem;
-	elem = new Value;
-	*elem = *(p.elem); 
-	hash = p.hash;
-	k = p.k;
-	flag = true;
-	return *this;
-}
-
-const Key Pair::get_key() const { return k; }
-Key Pair::get_key() { return k; }
-void Pair::put_key(const Key& t) { k = t; }
-void Pair::put_key(Key& t) { k = t; }
-
-
-void Pair::insert(const Value& v)
-{
-	flag = true;
-	elem = new Value;
-	*elem = v;
-	hash = hash_count(k);
-}
-void Pair::insert(Value& v)
-{
-	flag = true;
-	elem = new Value;
-	*elem = v;
-	hash = hash_count(k);
-}
-void Pair::insert()
-{
-	flag = true;
-	elem = new Value;
-	hash = hash_count(k);
-}
-
-const Value& Pair::get_value() const { return *elem; }
-Value& Pair::get_value() { return *elem; }
-
-void Pair::clear()
-{
-	k.clear();
-	hash = NULL;
-	flag = false;
-	delete elem;
-}
-
-bool Pair::operator==(const Pair& p) const { return ((k == p.k) && (elem == p.elem) &&(flag == p.flag)); }
-
-
-/*HashTable*/
-
-
+#include "HashTable.h"
 
 
 HashTable::HashTable(int size = 100) : quantity(size), used(0) { list = new Pair[size]; }
@@ -145,14 +38,14 @@ bool HashTable::erase(const Key& k)
 	used--;
 
 	// теперь надо сместить некоторые ячейки вверх по циклу
-	int tmp = quantity - 1; 
+	int tmp = quantity - 1;
 	int j = ((i + 1) % quantity);									// следующая ячейка
 	while (list[j].flag && tmp)
 	{
 		int tmp_hash = list[j].hash % quantity;						// хэш ключа следующей ячейки
 		if (tmp_hash == hash)										// если хэши равны, то сместим ячейку на одну вверх
 		{															// настоящая ячейка всегда заведомо очищена
-			list[i] = list[j]; 
+			list[i] = list[j];
 			list[j].clear();
 		}
 		else														// иначе
@@ -165,15 +58,15 @@ bool HashTable::erase(const Key& k)
 		tmp--;														// минус одна пройденная ячейка
 	}
 	return true;
-} 
-	//int tmp = quantity - 1;											
+}
+	//int tmp = quantity - 1;
 	//i = ((i + 1) % quantity);										// начнем со следующей ячейки
 	//while (list[i].flag && tmp)
 	//{
 	//	int tmp_hash = list[i].hash % quantity;						// хэш ключа текущей ячейки
 	//	if (tmp_hash == hash)										// если хэши равны, то сместим ячейку на одну вверх
 	//	{															// предыдущая ячейка всегда заведомо очищена
-	//		list[i - 1] = list[i]; // если i == 0 ? 
+	//		list[i - 1] = list[i]; // если i == 0 ?
 	//		list[i].clear();
 	//	}
 	//	else														// иначе
@@ -201,16 +94,16 @@ void HashTable::swap(HashTable& b)
 	b.used = tmp_u;
 }
 
-void HashTable::resize() 
+void HashTable::resize()
 {
 	Pair* new_list = new Pair[quantity * 2];
-	for (int i = 0; i < quantity; i++)	// неправильно	
+	for (int i = 0; i < quantity; i++)	// неправильно
 		new_list[i] = list[i];
 	clear();
 	list = new_list;
 	quantity *= 2;
 //перезапись по новым хешам
-} 
+}
 
 bool HashTable::insert(const Key& k, const Value& v)
 {
@@ -218,7 +111,7 @@ bool HashTable::insert(const Key& k, const Value& v)
 	if (size() == quantity) resize();
 
 	int hash = hash_count(k);
-	
+
 	int i = 0;
 	Pair p(v,k);
 	Pair tp;
@@ -249,10 +142,10 @@ bool HashTable::contains(const Key& k) const
 Value& HashTable::operator[](const Key& k)
 {
 	int hash = hash_count(k);
-	
+
 	if (!contains(k))
 		for (int i = 0; i < quantity; i++) //?
-			if (list[(hash + i) % quantity].flag) 
+			if (list[(hash + i) % quantity].flag)
 			{
 				list[(hash + i) % quantity].insert();
 				return list[(hash + i) % quantity].get_value();

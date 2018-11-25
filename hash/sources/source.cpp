@@ -3,6 +3,9 @@
 //
 
 #include "Header.h"
+#include "HashTable.h"
+#include "Value.h"
+#include "Pair.h"
 
 
 int hash_count(const Key& k)
@@ -27,7 +30,7 @@ int main ()
 	const Value x("Kate", 18, 52);
 	const Value y("Tony", 17, 58);
 
-	
+
 
 	return 0;
 }
