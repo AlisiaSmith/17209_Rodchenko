@@ -1,20 +1,23 @@
 #pragma once
 
 #include "Header.h"
+#include "Value.h"
 
 struct Pair {
 private:
 	Key k;
 	Value *elem;
 public:
-	unsigned int hash;
+    Pair *next;
 	bool flag;
 
-	Pair();
+    Pair() = default;
 	Pair(Pair& p);
 	Pair(Value& v, Key& k);
 	Pair(const Value& v, const Key& k);
 	~Pair();
+
+
 
 	Pair& operator=(Pair& p);
 

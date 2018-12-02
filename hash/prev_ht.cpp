@@ -1,7 +1,7 @@
-#include "HashTable.h"
+#include "../headers/HashTable.h"
 
 
-HashTable::HashTable(int size = 100) : quantity(size), used(0) { list = new Pair[size]; }
+HashTable::HashTable(int size = 727) : quantity(size), used(0) { list = new Pair[size]; }
 HashTable::HashTable(const HashTable& other) : quantity(other.quantity), used(other.used) { for (int i = 0; i < other.quantity; i++)	list[i] = other.list[i]; }
 
 HashTable::~HashTable() { clear(); }
@@ -13,21 +13,20 @@ HashTable& HashTable::operator=(const HashTable& other)
 	quantity = other.quantity;
 	list = new Pair[quantity];
 	for (int i = 0; i < quantity; ++i)
-		list[i] = other.list[i];
+		list[i] = other.lisr[i];
 	used = other.used;
 	return *this;
 }
 
 void HashTable::clear() { delete[] list; }
 
-int HashTable::_find_num(const Key& k, int hash) const
-{
+/*{
 	int i = 0;
 	for (i; i < quantity; ++i)
 		if (list[(hash + i) % quantity].get_key() == k) break;
 
 	return (hash + i) % quantity;
-}
+}*/
 
 bool HashTable::erase(const Key& k)
 {
@@ -37,7 +36,7 @@ bool HashTable::erase(const Key& k)
 	if (list[i].flag) list[i].clear();
 	used--;
 
-	// теперь надо сместить некоторые ячейки вверх по циклу
+/*	// теперь надо сместить некоторые ячейки вверх по циклу
 	int tmp = quantity - 1;
 	int j = ((i + 1) % quantity);									// следующая ячейка
 	while (list[j].flag && tmp)
@@ -56,7 +55,7 @@ bool HashTable::erase(const Key& k)
 		i = j;
 		j = ((i + 1) % quantity);									// передвигаемся на следующую ячейку по циклу
 		tmp--;														// минус одна пройденная ячейка
-	}
+	}*/
 	return true;
 }
 	//int tmp = quantity - 1;
@@ -94,7 +93,7 @@ void HashTable::swap(HashTable& b)
 	b.used = tmp_u;
 }
 
-void HashTable::resize()
+/*void HashTable::resize()
 {
 	Pair* new_list = new Pair[quantity * 2];
 	for (int i = 0; i < quantity; i++)	// неправильно
@@ -103,17 +102,17 @@ void HashTable::resize()
 	list = new_list;
 	quantity *= 2;
 //перезапись по новым хешам
-}
+}*/
 
 bool HashTable::insert(const Key& k, const Value& v)
 {
 	if(contains(k)) return false;
-	if (size() == quantity) resize();
+//	if (size() == quantity) resize();
 
 	int hash = hash_count(k);
 
-	int i = 0;
-	Pair p(v,k);
+	//int i = 0;
+/*	Pair p(v,k);
 	Pair tp;
 	int th = hash;
 	for (i = 0; i < quantity; i++)
@@ -127,7 +126,7 @@ bool HashTable::insert(const Key& k, const Value& v)
 	}
 	list[(hash + i) % quantity] = p;
 	used++;
-	return true;
+	return true; */
 }
 
 bool HashTable::contains(const Key& k) const

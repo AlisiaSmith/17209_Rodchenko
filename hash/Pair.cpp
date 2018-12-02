@@ -1,19 +1,18 @@
-#pragma once
-
 #include "Pair.h"
 
-Pair::Pair() {};
 Pair::Pair(Pair& p)
 {
 	elem = new Value;
 	*elem = *(p.elem);
-	hash = p.hash;
 	k = p.k;
 	flag = true;
 }
 Pair::Pair(Value& v, Key& k) : k(k) { insert(v); }
 Pair::Pair(const Value& v, const Key& k) : k(k) { insert(v); }
-Pair::~Pair() { if (elem != nullptr) delete elem; }
+Pair::~Pair() {
+    if (elem != nullptr) delete elem;
+    if(next != nullptr) delete next;
+}
 
 Pair& Pair::operator=(Pair & p)
 {
@@ -21,9 +20,9 @@ Pair& Pair::operator=(Pair & p)
 	if (elem != nullptr) delete elem;
 	elem = new Value;
 	*elem = *(p.elem);
-	hash = p.hash;
 	k = p.k;
 	flag = true;
+    *next = *(p.next);
 	return *this;
 }
 
@@ -38,20 +37,17 @@ void Pair::insert(const Value& v)
 	flag = true;
 	elem = new Value;
 	*elem = v;
-	hash = hash_count(k);
 }
 void Pair::insert(Value& v)
 {
 	flag = true;
 	elem = new Value;
-	*elem = v;
-	hash = hash_count(k);
+    *elem = v;
 }
 void Pair::insert()
 {
 	flag = true;
 	elem = new Value;
-	hash = hash_count(k);
 }
 
 const Value& Pair::get_value() const { return *elem; }
@@ -59,10 +55,9 @@ Value& Pair::get_value() { return *elem; }
 
 void Pair::clear()
 {
-	k.clear();
-	hash = NULL;
-	flag = false;
-	delete elem;
+    Pair *tmp = next;
+    *this = *next;
+    delete tmp;
 }
 
-bool Pair::operator==(const Pair& p) const { return ((k == p.k) && (elem == p.elem) &&(flag == p.flag)); }
+bool Pair::operator==(const Pair& p) const { return ((k == p.k) && (elem == p.elem) && (flag == p.flag) && (*next == *(p.next))); }

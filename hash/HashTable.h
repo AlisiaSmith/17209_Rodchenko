@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Header.h"
+#include "Pair.h"
 
 class HashTable
 {
 private:
 	int quantity;
-	int used;
+	size_t used = 0u;
 	Pair *list;
 
 	Value& _at(const Key& k) const;
@@ -42,8 +43,6 @@ public:
 	// Возвращает значение по ключу. Бросает исключение при неудаче.
 	Value& at(const Key& k);
 	const Value& at(const Key& k) const;
-
-	void resize();
 
 
 	size_t size() const;
