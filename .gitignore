@@ -1,3 +1,7 @@
 .vs/
 .idea/
 Project*/
+
+builb/
+cmake-build-debug/
+CMakeList.txt

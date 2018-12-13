@@ -3,17 +3,22 @@
 #include "Header.h"
 #include "Pair.h"
 
+#define _DEFAUT_HT_SIZE_ 727
+
+int hash_count(const Key& k);
+
 class HashTable
 {
 private:
-	int quantity;
+	size_t quantity;
 	size_t used = 0u;
 	Pair *list;
 
 	Value& _at(const Key& k) const;
 	int _find_num(const Key& k, int hash) const;
 public:
-	HashTable(int size);
+	HashTable();
+	HashTable(size_t size);
 	~HashTable();
 
 	HashTable(const HashTable& other);
@@ -46,6 +51,7 @@ public:
 
 
 	size_t size() const;
+	size_t size_ht() const;
 	bool empty() const;
 
 	friend bool operator==(const HashTable & a, const HashTable & b);

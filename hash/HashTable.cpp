@@ -1,10 +1,21 @@
 #include "HashTable.h"
 
+int hash_count(const Key& k)
+{
+    unsigned int len = (unsigned int) k.length();
+    unsigned int hash = 0;
+    if (len > 15) len = 15;
+    for (unsigned int i = 0; i < len; ++i)
+        hash = +(unsigned int)(k[i]*pow(3, i));
+    return hash;
+}
 
-HashTable::HashTable(int size = 727) : quantity(size) { list = new Pair[size]; }
+
+HashTable::HashTable() : quantity(_DEFAUT_HT_SIZE_) { list = new Pair[_DEFAUT_HT_SIZE_]; }
+HashTable::HashTable(size_t size) : quantity(size) { list = new Pair[size]; }
 HashTable::HashTable(const HashTable& other) : quantity(other.quantity), used(other.used) { for (int i = 0; i < other.quantity; i++)	list[i] = other.list[i]; }
 
-HashTable::~HashTable() { clear(); }
+HashTable::~HashTable() { delete[] list; }
 
 HashTable& HashTable::operator=(const HashTable& other)
 {
@@ -18,7 +29,13 @@ HashTable& HashTable::operator=(const HashTable& other)
 	return *this;
 }
 
-void HashTable::clear() { delete[] list; }
+void HashTable::clear()
+{
+    if(empty()) return;
+    delete[] list;
+    list = new Pair[quantity];
+    used = 0u;
+}
 
 bool HashTable::erase(const Key& k)
 {
@@ -101,7 +118,7 @@ Value& HashTable::_at(const Key& k) const
 {
 	try
 	{
-		if (!contains(k)) throw 1;	
+		if (!contains(k)) throw 1;
 	}
 	catch (...) { cout << "You have failed" << endl; }
 
@@ -115,5 +132,6 @@ const Value& HashTable::at(const Key& k) const { return _at(k); }
 Value& HashTable::at(const Key& k) { return _at(k); }
 
 size_t HashTable::size() const { return used; }
+size_t HashTable::size_ht() const { return quantity; }
 
 bool HashTable::empty() const { return used == 0; }

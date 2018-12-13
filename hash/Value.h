@@ -2,6 +2,7 @@
 
 #include "Header.h"
 
+
 struct Value {
 private:
 	string name;
@@ -14,6 +15,11 @@ public:
 	Value(const Value& v);
 	~Value();
 	Value& operator=(const Value& v);
+
+	string get_name() const;
+	unsigned int get_age() const;
+	unsigned int get_weight() const;
+
 
 	bool operator==(Value& v) const;
 	bool operator==(Value *v) const;

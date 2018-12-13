@@ -4,7 +4,6 @@ project(hash)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
-include_directories(tests)
 
 add_executable(hash
         HashTable.cpp
@@ -15,6 +14,3 @@ add_executable(hash
         source.cpp
         Value.cpp
         Value.h)
-
-add_executable(tests
-    tests.cpp)

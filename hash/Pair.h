@@ -8,10 +8,11 @@ private:
 	Key k;
 	Value *elem;
 public:
-    Pair *next;
+
+	Pair *next;
 	bool flag;
 
-    Pair() = default;
+  Pair() = default;
 	Pair(Pair& p);
 	Pair(Value& v, Key& k);
 	Pair(const Value& v, const Key& k);

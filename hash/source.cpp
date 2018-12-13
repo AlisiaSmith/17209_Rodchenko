@@ -2,36 +2,76 @@
 // Created by AlisiaSmith on 17.09.18.
 //
 
-
 #include "Header.h"
 #include "HashTable.h"
 #include "Value.h"
 #include "Pair.h"
+#include <gtest/gtest.h>
 
 
-int hash_count(const Key& k)
+TEST(HashTable, constructs)
 {
-	unsigned int len = (unsigned int) k.length();
-	unsigned int hash = 0;
-	if (len > 15) len = 15;
-	for (unsigned int i = 0; i < len; ++i)
-		hash = +(unsigned int)(k[i]*pow(3, i));
-	return hash;
+	HashTable * ht1 = new HashTable;
+	HashTable ht2;
+	HashTable ht3(3);
+	HashTable ht4 = ht3;
+
+  EXPECT_TRUE(ht1->empty());
+  EXPECT_TRUE(ht2.empty());
+  EXPECT_TRUE(ht3.empty());
+  EXPECT_TRUE(ht4.empty());
+
+	EXPECT_TRUE(ht4 == ht3);
+
+	EXPECT_EQ(0, ht1->size());
+	EXPECT_EQ(0, ht2.size());
+	EXPECT_EQ(0, ht3.size());
+	EXPECT_EQ(0, ht4.size());
+
+	EXPECT_EQ(727, ht1->size_ht());
+	EXPECT_EQ(727, ht2.size_ht());
+	EXPECT_EQ(3, ht3.size_ht());
+	EXPECT_EQ(3, ht4.size_ht());
+
+	delete ht1;
 }
 
-void error()
+TEST (Value, vl_functions)
 {
-	cout << "The command is wrong." << endl << "Ener a \"help\" to get instruction." << endl;
+	Value vl;
+
+//	EXPECT_STREQ("Ivanov Ivan Ivanivich", vl.get_name());
+	EXPECT_EQ(23, vl.get_age());
+	EXPECT_EQ(78, vl.get_weight());
+
+	Value vl2("Sasha", 28, 72);
+
+//	EXPECT_STREQ("Sahsa", vl2.get_name());
+	EXPECT_EQ(28, vl2.get_age());
+	EXPECT_EQ(72, vl2.get_weight());
+
+	Value vl3 = vl2;
+
+	EXPECT_TRUE(vl3 == vl2);
+	EXPECT_TRUE(vl3 != vl);
+
+	EXPECT_FALSE(vl3 == vl);
+	EXPECT_FALSE(vl3 != vl2);
+
+	vl = vl2;
+
+	EXPECT_TRUE(vl == vl2);
+	EXPECT_FALSE(vl != vl2);
+
 }
+
+/*TEST (Pairs, pa_functions)
+{
+
+}*/
+
 
 int main ()
 {
-	const Value v("Anna", 17, 45);
-	const Value w("Ivan", 19, 66);
-	const Value x("Kate", 18, 52);
-	const Value y("Tony", 17, 58);
-
-
-
-	return 0;
+	return RUN_ALL_TESTS();
 }
