@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/burger/git/17209_Rodchenko/hash/. -I/home/burger/git/17209_Rodchenko/hash/tests 
+CXX_INCLUDES = -I/home/burger/git/17209_Rodchenko/hash/. 
 

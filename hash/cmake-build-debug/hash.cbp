@@ -45,7 +45,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/burger/git/17209_Rodchenko/hash/."/>
-					<Add directory="/home/burger/git/17209_Rodchenko/hash/tests"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -70,7 +69,6 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add directory="/home/burger/git/17209_Rodchenko/hash/."/>
-					<Add directory="/home/burger/git/17209_Rodchenko/hash/tests"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>

@@ -2,6 +2,8 @@
 
 #define SizeOfDeck 52
 
+#include <ctime>
+
 #include "Card.h"
 
 class Deck
@@ -21,8 +23,8 @@ void imply();
 void shuffle();
 bool IsEmpty();
 
-Card& DrawACard() const;
+Card& DrawACard();
 
 
 
-}
+};

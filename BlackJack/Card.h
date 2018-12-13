@@ -4,7 +4,7 @@
 #include <string>
 
 
-enum suits{ "hearts", "diamonds", "clubs", "spades" };
+enum suits{ hearts, diamonds, clubs, spades };
 
 class Card {
 private:
@@ -15,12 +15,11 @@ public:
   Card(suits suit, int cost);
   ~Card();
 
-  Card(const Card a) = delete;
   Card& operator=(const Card& a);
 
-  Card swap(Card& a);
+  void swap(Card& a);
 
   void imply(suits s, int count);
 
   bool operator==(const Card& a);
-}
+};

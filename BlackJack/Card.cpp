@@ -1,6 +1,7 @@
 #include "Card.h"
 
   Card::Card(suits suit, int cost) : suit(suit), cost(cost) {}
+  Card::~Card() {}
 
   void Card::swap(Card& a)
   {
@@ -23,4 +24,5 @@ Card& Card::operator=(const Card& a)
 }
 
 
-bool operator==(const Card& a) {  return (suit == a.suit) && (cost == a.cost);  }
+
+bool Card::operator==(const Card& a) {  return (suit == a.suit) && (cost == a.cost);  }

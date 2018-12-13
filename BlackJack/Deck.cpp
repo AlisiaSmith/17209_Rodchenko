@@ -1,4 +1,4 @@
-#include <ctime>
+
 
 #include "Deck.h"
 
@@ -16,41 +16,41 @@ Deck::~Deck() { delete[] list;  }
 void Deck::imply()
 {
   if(!list) return;
-  for (int i = 0, i < 10, i++)
+  for (int i = 0; i < 10; i++)
   {
-      list[i].imply("hearts", i + 1);
-      list[i + 13].imply("diamonds", i + 1);
-      list[i + 26].imply("clubs", i + 1);
-      list[i + 39].imply("spades", i + 1);
+      list[i].imply(hearts, i + 1);
+      list[i + 13].imply(diamonds, i + 1);
+      list[i + 26].imply(clubs, i + 1);
+      list[i + 39].imply(spades, i + 1);
   }
 
-  for (int i = 0, i < 3, i++)
+  for (int i = 0; i < 3; i++)
   {
-      list[i + 10].imply("hearts", 10);
-      list[i + 13 + 10].imply("diamonds", 10);
-      list[i + 26 + 10].imply("clubs", 10);
-      list[i + 39 + 10].imply("spades", 10);
+      list[i + 10].imply(hearts, 10);
+      list[i + 13 + 10].imply(diamonds, 10);
+      list[i + 26 + 10].imply(clubs, 10);
+      list[i + 39 + 10].imply(spades, 10);
   }
 }
 
 void Deck::shuffle()
 {
-  int count = 1 + srand( time( 0 )) % 100; // перетосовать от 1 до 100 раз
+  srand( time( 0 ));
+  int count = 10 + rand()  % 100; // перетосовать от 10 до 110 раз
 
-  for(int i = 0, i < count, i++)
+  for(int i = 0; i < count; i++)
   {
-  int val_1 = srand( time( 0 )) % size;
-  int val_2 = srand( time( 0 )) % size;
+  int val_1 = rand() % size;
+  int val_2 = rand() % size;
 
   list[val_1].swap(list[val_2]);
   }
 }
 
-bool Deck::IsEmpty() {  return !(num < size)}
+bool Deck::IsEmpty() {  return !(num < size);   }
 
-Card& DrawACard() const
+Card& Deck::DrawACard()
 {
-  if(IsEmpty) return NULL;
   num++;
   return list[num - 1];
 }
