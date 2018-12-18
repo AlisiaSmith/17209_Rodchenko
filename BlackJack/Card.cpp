@@ -23,6 +23,7 @@ Card& Card::operator=(const Card& a)
   cost = a.cost;
 }
 
+int Card::GetCost() const  { return cost; }
 
 
 bool Card::operator==(const Card& a) {  return (suit == a.suit) && (cost == a.cost);  }

@@ -5,7 +5,7 @@
 Game::Game(){}
 Game::~Game(){}
 
-Card& Game::DrawACard()
+Card& Game::DrawACard() const ()
 {
   srand( time( 0 ));
   int i = rand() % num_of_decks;

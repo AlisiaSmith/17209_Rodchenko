@@ -19,6 +19,8 @@ public:
 
   void swap(Card& a);
 
+  int GetCost() const;
+
   void imply(suits s, int count);
 
   bool operator==(const Card& a);

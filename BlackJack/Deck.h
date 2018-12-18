@@ -3,7 +3,6 @@
 #define SizeOfDeck 52
 
 #include <ctime>
-
 #include "Card.h"
 
 class Deck

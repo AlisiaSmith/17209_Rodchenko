@@ -3,8 +3,6 @@
 #include "Deck.h"
 
 
-
-
 Deck::Deck() : size(SizeOfDeck), num(0)
 {
   list = new Card[SizeOfDeck];
@@ -40,8 +38,8 @@ void Deck::shuffle()
 
   for(int i = 0; i < count; i++)
   {
-  int val_1 = rand() % size;
-  int val_2 = rand() % size;
+  int val_1 = rand() % (int)size;
+  int val_2 = rand() % (int)size;
 
   list[val_1].swap(list[val_2]);
   }

@@ -3,7 +3,7 @@
 #include "Header.h"
 
 
-struct Value {
+class Value {
 private:
 	string name;
 	unsigned int age;
@@ -21,7 +21,7 @@ public:
 	unsigned int get_weight() const;
 
 
-	bool operator==(Value& v) const;
+	bool operator==(const Value& v) const;
 	bool operator==(Value *v) const;
 
 	bool operator!=(Value& v) const;
