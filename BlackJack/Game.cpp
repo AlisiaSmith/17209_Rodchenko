@@ -10,8 +10,10 @@ Game::Game(Player* ls, int num_of_pl, int num_of_dec) : num_of_decks(num_of_dec)
   critical  = count / 3;
 
   d = new Deck [num_of_decks];
+
+  process();
 }
-Game::~Game(){}
+Game::~Game(){ delete[] d; }
 
 Card Game::DrawACard()
 {
@@ -28,6 +30,9 @@ void Game::BackCards()
     for (int i = 0; i < num_of_decks; i++)
         d[i].BackCards();
     used = hold;
+
+    for (int i = 0; i < num_of_decks; i++)
+        d[i].shuffle();
 }
 
 void Game::process()

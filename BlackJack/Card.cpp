@@ -34,5 +34,6 @@ void Card::UseOn() { leave = true; OnHands = true;}
 void Card::UseOff() { leave = false; }
 bool Card::IsUsed() const { return leave; }
 void Card::HoldOff() { OnHands = false; }
+bool Card::IsHold() const { return OnHands; }
 
 bool Card::operator==(const Card& a) {  return (suit == a.suit) && (cost == a.cost);  }
