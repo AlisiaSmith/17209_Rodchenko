@@ -1,6 +1,7 @@
 #include "Card.h"
 
-  Card::Card(suits suit, int cost) : suit(suit), cost(cost) {}
+  Card::Card() : cost(10), used (false) {}
+  Card::Card(int cost) : cost(cost), used(false) {}
   Card::~Card() {}
 
   void Card::swap(Card& a)
@@ -11,19 +12,15 @@
     *this = tmp;
   }
 
-void Card::imply(suits s, int count)
-{
-  suit = s;
-  cost = count;
-}
+void Card::imply(int count) { cost = count; }
 
-Card& Card::operator=(const Card& a)
-{
-  suit = a.suit;
-  cost = a.cost;
-}
+Card& Card::operator=(const Card& a) { cost = a.cost; }
 
 int Card::GetCost() const  { return cost; }
 
+void Card::UseOn() { used = true; }
+void Card::UseOff() { used = false; }
+bool Card::IsUsed() { return used; }
 
-bool Card::operator==(const Card& a) {  return (suit == a.suit) && (cost == a.cost);  }
+
+bool Card::operator==(const Card& a) {  return cost == a.cost;  }

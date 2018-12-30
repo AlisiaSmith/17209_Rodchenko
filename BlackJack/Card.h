@@ -4,15 +4,14 @@
 #include <string>
 
 
-enum suits{ hearts, diamonds, clubs, spades };
 
 class Card {
 private:
-  suits suit;
   int cost;
+  bool used;
 public:
   Card();
-  Card(suits suit, int cost);
+  Card(int cost);
   ~Card();
 
   Card& operator=(const Card& a);
@@ -21,7 +20,11 @@ public:
 
   int GetCost() const;
 
-  void imply(suits s, int count);
+  void imply(int count);
+
+  void UseOn();
+  void UseOff();
+  bool IsUsed();
 
   bool operator==(const Card& a);
 };

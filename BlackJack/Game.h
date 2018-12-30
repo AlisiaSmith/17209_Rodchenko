@@ -27,7 +27,7 @@ public:
 Game();
 ~Game();
 
-Card& DrawACard() const;
+Card DrawACard() const;
 
 void BackCards();
 

@@ -6,7 +6,7 @@
 
 class Player
 {
-private:
+protected:
 
     int score;
     Card *list;
@@ -14,9 +14,9 @@ private:
 
 public:
     Player();
-    ~Player();
+     virtual ~Player();
 
-    bool DoesHaveThisCard(Card& a) const;
+     virtual bool ShoudTakeNext();
 
     int GetScore()const;
 

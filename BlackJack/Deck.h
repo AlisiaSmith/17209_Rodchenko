@@ -22,7 +22,7 @@ void imply();
 void shuffle();
 bool IsEmpty();
 
-Card& DrawACard();
+Card DrawACard();
 
 
 
