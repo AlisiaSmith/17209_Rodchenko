@@ -52,14 +52,10 @@ Card Deck::DrawACard()
   return list[num - 1];
 }
 
-bool Deck::BackCard(Card& a)
+bool Deck::BackCards()
 {
-  for (int i = 0; i < size; i++)
-    if((list[i] == a) && (list[i].IsUsed()))
-     {
-       list[i].UseOff();
-       return true;
-     }
-     return false;
+ for(int i = 0; i < SizeOfDeck; i++)
+     if(list[i].IsUsed()) list[i].UseOff();
+
 }
 

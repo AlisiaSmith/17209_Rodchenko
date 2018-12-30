@@ -9,6 +9,7 @@ private:
   suits suit;
   int cost;
   bool leave;
+  bool OnHands;
 public:
   Card();
   Card(suits suit, int cost);
@@ -26,6 +27,7 @@ public:
   void UseOn();
   void UseOff();
   bool IsUsed() const;
+  void HoldOff();
 
   bool operator==(const Card& a);
 };

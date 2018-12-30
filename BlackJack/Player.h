@@ -19,6 +19,7 @@ public:
      virtual bool ShoudTakeNext();
 
     int GetScore()const;
+    int GetCount()const;
 
     void PutCard(Card& a);
 

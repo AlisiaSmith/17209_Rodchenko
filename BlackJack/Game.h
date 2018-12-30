@@ -12,17 +12,18 @@ class Game
 {
 private:
 
-Deck *d; // игровые коллоды
-int num_of_decks; // их количесво
-size_t count; // количество карт во всех коллодах
-int used; // вышло карт
+Deck *d;                // игровые коллоды
+int num_of_decks;       // их количесво
+size_t count;           // количество карт во всех коллодах
+int used;               // вышло карт
+int hold;
 
 int critical;   // критичная точка
                 // возвращаем вышедшие неиспользуемые карты
                 // высчитывается при задании num_of_decks
 
 int num_of_players; //количество игроков
-Player *pl; // список игроков
+Player *pl;         // список игроков
 
 public:
 //Game();

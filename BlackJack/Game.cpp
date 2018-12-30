@@ -6,6 +6,7 @@ Game::Game(Player* ls, int num_of_pl, int num_of_dec) : num_of_decks(num_of_dec)
 {
   count = num_of_decks * SizeOfDeck;
   used = 0u;
+  hold = 0u;
   critical  = count / 3;
 
   d = new Deck [num_of_decks];
@@ -16,14 +17,17 @@ Card Game::DrawACard()
 {
   srand( time( 0 ));
   int i = rand() % num_of_decks;
-  while (d[i].IsEmpty()) i = (i++) % num_of_decks;
+  while (d[i].IsEmpty()) i = (i++) % (num_of_decks + 1);
   used++;
+  hold++;
   return d[i].DrawACard();
 }
 
 void Game::BackCards()
 {
-
+    for (int i = 0; i < num_of_decks; i++)
+        d[i].BackCards();
+    used = hold;
 }
 
 void Game::process()
@@ -36,8 +40,9 @@ void Game::process()
       if(IsCritical()) BackCards();
       if (pl[i].GetScore() > 21)
       {
-        pl[i].lose();
-        break;
+          hold = hold - pl[i].GetCount();
+          pl[i].lose();
+          break;
       }
       if (pl[i].GetScore() == 21) pl[i].won();
     }
