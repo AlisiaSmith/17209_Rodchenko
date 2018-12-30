@@ -11,4 +11,4 @@ public:
 }
 
 
-bool StrategyOf17Score::ShoudTakeNext() { return GetScore() < MAX_SCORE; }
+bool StrategyOf19Score::ShoudTakeNext() { return GetScore() < MAX_SCORE; }

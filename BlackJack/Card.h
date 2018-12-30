@@ -8,7 +8,7 @@ class Card {
 private:
   suits suit;
   int cost;
-  bool used;
+  bool leave;
 public:
   Card();
   Card(suits suit, int cost);
@@ -19,6 +19,7 @@ public:
   void swap(Card& a);
 
   int GetCost() const;
+  suits GetSuit() const;
 
   void imply(suits s, int count);
 

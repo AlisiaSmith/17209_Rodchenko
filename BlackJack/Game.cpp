@@ -25,3 +25,22 @@ void Game::BackCards()
 {
 
 }
+
+void Game::process()
+{
+  for(int i = 0; i < num_of_players; i++)
+    while(pl[i].ShoudTakeNext())
+    {
+      pl[i].PutCard();
+      if(IsCritical()) BackCards();
+      if (pl[i].GetScore() > 21)
+      {
+        pl[i].lose();
+        break;
+      }
+      if (pl[i].GetScore() == 21) pl[i].won();
+    }
+}
+
+
+bool IsCritical() const { return critical <= (count - used); }

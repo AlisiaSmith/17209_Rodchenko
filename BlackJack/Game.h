@@ -12,16 +12,17 @@ class Game
 {
 private:
 
-Deck *d;
-int num_of_decks;
-size_t count;
-int used;
+Deck *d; // игровые коллоды
+int num_of_decks; // их количесво
+size_t count; // количество карт во всех коллодах
+int used; // вышло карт
 
-int critical; //высчитывается при задании num_of_decks
+int critical;   // критичная точка
+                // возвращаем вышедшие неиспользуемые карты
+                // высчитывается при задании num_of_decks
 
-//Croupier croup;
-int num_of_players;
-Player *pl;
+int num_of_players; //количество игроков
+Player *pl; // список игроков
 
 public:
 //Game();
@@ -32,6 +33,11 @@ Card DrawACard() const;
 
 void BackCards();
 
+void process();
+
 void finish();
+
+
+bool IsCritical() const;
 
 };

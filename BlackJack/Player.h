@@ -24,4 +24,7 @@ public:
 
     void ClearList();
 
+    void lose();
+    void won();
+
 };

@@ -21,16 +21,18 @@
 Card& Card::operator=(const Card& a)
 {
   if (&a == this) return *this;
-  suit = a.suit;
-  cost = a.cost;
+  suit = a.GetSuit();
+  cost = a.GetCost();
+  lrave = a.IsUsed();
   return *this;
 }
 
 int Card::GetCost() const  { return cost; }
+suits GetSuit() const { return suit; }
 
-void Card::UseOn() { used = true; }
-void Card::UseOff() { used = false; }
-bool Card::IsUsed() { return used; }
+void Card::UseOn() { leave = true; }
+void Card::UseOff() { leave = false; }
+bool Card::IsUsed() { return leave; }
 
 
 bool Card::operator==(const Card& a) {  return (suit == a.suit) && (cost == a.cost);  }

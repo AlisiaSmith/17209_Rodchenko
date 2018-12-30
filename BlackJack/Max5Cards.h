@@ -11,4 +11,4 @@ public:
 }
 
 
-bool StrategyOf17Score::ShoudTakeNext() { return (count < MAX_COUNT_CARD) && (GetScore() < 21); }
+bool StrategyOf5Cards::ShoudTakeNext() { return (count < MAX_COUNT_CARD) && (GetScore() < 21); }
