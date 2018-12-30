@@ -29,7 +29,7 @@ public:
 Game(Player* ls, int num_of_pl, int num_of_dec);
 ~Game();
 
-Card DrawACard() const;
+Card DrawACard();
 
 void BackCards();
 

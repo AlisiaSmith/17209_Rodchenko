@@ -3,7 +3,7 @@
 
 Player::Player() : score(0), count(0) {  list = new Card [MAX_CARDS];  }
 
-virtual Player::~Player() {  delete[] list;  }
+Player::~Player() {  delete[] list;  }
 
 int Player::GetScore() const {  return score;  }
 

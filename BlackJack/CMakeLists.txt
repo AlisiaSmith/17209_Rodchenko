@@ -15,4 +15,8 @@ add_executable(BlackJack
         Game.h
         main.cpp
         Player.cpp
-        Player.h)
+        Player.h
+        Max5Cards.h
+        Max17Score.h
+        Max19Score.h
+        WhileNot21.h)

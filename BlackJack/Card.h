@@ -25,7 +25,7 @@ public:
 
   void UseOn();
   void UseOff();
-  bool IsUsed();
+  bool IsUsed() const;
 
   bool operator==(const Card& a);
 };
