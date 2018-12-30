@@ -1,12 +1,14 @@
 #pragma once
 
-#define MAX_SCORE 17
+
 
 
 #include "Player.h"
 
 class StrategyOf17Score :: public Player
 {
+  #define MAX_SCORE 17
+public:
   bool ShoudTakeNext();
 }
 

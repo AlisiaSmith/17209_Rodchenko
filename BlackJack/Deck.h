@@ -23,7 +23,7 @@ void shuffle();
 bool IsEmpty();
 
 Card DrawACard();
-
+bool BackCard(Card& a);
 
 
 };

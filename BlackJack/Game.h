@@ -6,7 +6,7 @@
 #include "Deck.h"
 #include "Card.h"
 #include "Player.h"
-//#include "Croupier.h"
+
 
 class Game
 {
@@ -21,10 +21,11 @@ int critical; //высчитывается при задании num_of_decks
 
 //Croupier croup;
 int num_of_players;
-//Player *pl;
+Player *pl;
 
 public:
-Game();
+//Game();
+Game(Player* ls, int num_of_pl, int num_of_dec);
 ~Game();
 
 Card DrawACard() const;

@@ -1,17 +1,17 @@
 #pragma once
 
 #include <iostream>
-#include <string>
 
-
+enum suits{ hearts, diamonds, clubs, spades };
 
 class Card {
 private:
+  suits suit;
   int cost;
   bool used;
 public:
   Card();
-  Card(int cost);
+  Card(suits suit, int cost);
   ~Card();
 
   Card& operator=(const Card& a);
@@ -20,7 +20,7 @@ public:
 
   int GetCost() const;
 
-  void imply(int count);
+  void imply(suits s, int count);
 
   void UseOn();
   void UseOff();
