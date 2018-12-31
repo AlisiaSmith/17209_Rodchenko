@@ -11,7 +11,7 @@ private:
 
 Card *list;
 size_t size;
-int num; // карт вышло
+int num;        // карт вышло
 
 public:
 
@@ -24,6 +24,4 @@ bool IsEmpty();
 
 Card DrawACard();
 void BackCards();
-
-
 };

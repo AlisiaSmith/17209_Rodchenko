@@ -17,13 +17,12 @@ void Player::PutCard(Card& a)
 
 void Player::lose()
 {
-    score = 0;
-    ClearList();
+     ClearList();
 }
 
 void Player::won()
 {
-
+    wins++;
 }
 
 void Player::ClearList()
@@ -34,3 +33,4 @@ void Player::ClearList()
 }
 
 bool Player::ShoudTakeNext() { return true; }
+std::string Player::WhoAmI() const { return "Player"; }

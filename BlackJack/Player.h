@@ -1,6 +1,9 @@
 #pragma once
 
+#include <string>
+
 #include "Card.h"
+
 
 #define MAX_CARDS 12
 
@@ -11,12 +14,14 @@ protected:
     int score;
     Card *list;
     int count;
+    int wins;
 
 public:
     Player();
      virtual ~Player();
 
      virtual bool ShoudTakeNext();
+     virtual std::string WhoAmI() const;
 
     int GetScore()const;
     int GetCount()const;

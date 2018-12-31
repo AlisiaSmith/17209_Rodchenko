@@ -3,12 +3,10 @@
 
 #include "Player.h"
 
-class StrategyOf5Cards :: public Player
+class StrategyOf5Cards : public Player
 {
-  #define MAX_COUNT_CARD 5
-public:
-  bool ShoudTakeNext();
-}
+  public:
+  bool ShoudTakeNext() { return (count < 5) && (GetScore() < 21); }
+  std::string WhoAmI() const { return "StrategyOf5Cards"; }
+};
 
-
-bool StrategyOf5Cards::ShoudTakeNext() { return (count < MAX_COUNT_CARD) && (GetScore() < 21); }

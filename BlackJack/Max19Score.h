@@ -3,12 +3,10 @@
 
 #include "Player.h"
 
-class StrategyOf19Score :: public Player
+class StrategyOf19Score : public Player
 {
-  #define MAX_SCORE 19
 public:
-  bool ShoudTakeNext();
-}
+  bool ShoudTakeNext() { return GetScore() < 19; }
+  std::string WhoAmI() const { return "StrategyOf19Score"; }
+};
 
-
-bool StrategyOf19Score::ShoudTakeNext() { return GetScore() < MAX_SCORE; }

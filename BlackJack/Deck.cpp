@@ -31,7 +31,7 @@ void Deck::imply()
 
 void Deck::shuffle()
 {
-  srand( time( 0 ));
+  //srand( time( 0 ));
   int count = 10 + rand()  % 100; // перетосовать от 10 до 110 раз
 
   for(int i = 0; i < count; i++)
