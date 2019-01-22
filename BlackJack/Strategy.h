@@ -11,3 +11,5 @@
 #include "WhileNot21.h"
 
 #endif //BLACKJACK_STRATEGY_H
+
+// Уже не нужен, так как есть фабрика

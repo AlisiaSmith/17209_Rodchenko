@@ -19,6 +19,5 @@ add_executable(BlackJack
         Max5Cards.h
         Max17Score.h
         Max19Score.h
-        WhileNot21.h)
-
-
+        WhileNot21.h
+        Factory.h)

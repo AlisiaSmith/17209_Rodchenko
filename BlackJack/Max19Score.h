@@ -1,7 +1,9 @@
 #pragma once
 
+#include <iostream>
 
 #include "Player.h"
+#include "Factory.h"
 
 class StrategyOf19Score : public Player
 {
@@ -10,3 +12,15 @@ public:
   std::string WhoAmI() const { return "StrategyOf19Score"; }
 };
 
+namespace {
+
+    Player * createStrategyOf19Score() {
+        return new StrategyOf19Score;
+    }
+
+    Player* (*fcnPtr19)() = createStrategyOf19Score;
+
+	bool ok19 = Factory<std::string, decltype(createStrategyOf19Score)>::getInstance()
+			->registerPlayer("19score", *fcnPtr19);
+
+}
