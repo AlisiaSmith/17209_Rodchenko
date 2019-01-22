@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 #include <QMainWindow>
-#include <QTableWidget>
 
 #include "field.h"
 
@@ -41,8 +40,7 @@ private slots:
     void on_tableWidget_cellClicked(int col, int row);
 
 private:
-    Ui::MainWindow *ui;
-    QTableWidget *tableWidget;
+    Ui::MainWindow *ui; 
     Field *f;
 
     int rows;

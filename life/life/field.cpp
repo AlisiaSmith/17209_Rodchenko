@@ -38,7 +38,7 @@ void  Field::random()
 {
   Field::clear();
 
-  //srand(time(0));
+  srand(time(0));
   int count = rand() % (widht * height / 3) + (widht + height) / 2;
 
   for(int i = 0; i < count; i++)
