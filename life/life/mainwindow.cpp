@@ -92,13 +92,19 @@ bool MainWindow::isNotEnd()
 void MainWindow::on_Start_clicked()
 {
     f->computation();
+    QTime t;
+
+    t.start();
 
     while(isNotEnd())
     {
+        if(t.elapsed() < 100) continue;
+        t.restart();
         f->step();
         rePaint();
         f->computation();
-        usleep(100000);
+
+        if(mousePressEvent())  break;
     }
 
 }

@@ -1,9 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <unistd.h>
+//#include <unistd.h>
 
 #include <QMainWindow>
+#include <QTime>
 
 #include "field.h"
 

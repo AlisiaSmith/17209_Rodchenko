@@ -10,10 +10,36 @@ int hash_count(const Key& k)
     return hash;
 }
 
+Pair* HashTable::getList(int i) const { return &list[i]; }
+
 
 HashTable::HashTable() : quantity(_DEFAUT_HT_SIZE_) { list = new Pair[_DEFAUT_HT_SIZE_]; }
 HashTable::HashTable(size_t size) : quantity(size) { list = new Pair[size]; }
 HashTable::HashTable(const HashTable& other) : quantity(other.quantity), used(other.used) { for (int i = 0; i < other.quantity; i++)	list[i] = other.list[i]; }
+
+
+bool HashTable::operator==(const HashTable & a) const
+{
+    if (!(quantity == a.size_ht() && used == a.size())) return false;
+    Pair * t1;
+    Pair * t2;
+    for(int i = 0; i < quantity; i++)
+    {
+        t1 = &(list[i]); t2 = a.getList(i);
+        while(t1 || t2)
+        {
+            if(!(t1 && t2)) return false;
+            if(*t1 == *t2)
+            {
+                t1 = t1->next;
+                t2 = t2->next;
+            }
+        }
+    }
+    return true;
+}
+
+bool HashTable::operator!=(const HashTable & a) const { return !HashTable::operator==(a);   }
 
 HashTable::~HashTable() { delete[] list; }
 

@@ -8,6 +8,12 @@
 #include "Pair.h"
 #include <gtest/gtest.h>
 
+ TEST(Hashtable, BasicTest)
+ {
+    HashTable ht;
+    ht.insert("abc", Value());
+    EXPECT_EQ(Value(), ht.at("abc"));
+ }
 
  TEST(HashTable, constructs)
  {
@@ -15,36 +21,34 @@
  	HashTable ht3(3);
  	HashTable ht4 = ht3;
 
-  EXPECT_TRUE(ht2.empty());
-  EXPECT_TRUE(ht3.empty());
-  EXPECT_TRUE(ht4.empty());
+    EXPECT_TRUE(ht2.empty());
+    EXPECT_TRUE(ht3.empty());
+    EXPECT_TRUE(ht4.empty());
 
 	EXPECT_TRUE(ht4 == ht3);
 
- 	EXPECT_EQ(0, ht1->size());
  	EXPECT_EQ(0, ht2.size());
  	EXPECT_EQ(0, ht3.size());
  	EXPECT_EQ(0, ht4.size());
 
- 	EXPECT_EQ(727, ht1->size_ht());
  	EXPECT_EQ(727, ht2.size_ht());
  	EXPECT_EQ(3, ht3.size_ht());
  	EXPECT_EQ(3, ht4.size_ht());
 
- 	delete ht1;
+// 	delete ht1;
  }
 
 TEST (Value, vl_functions)
 {
 	Value vl;
 
-//	EXPECT_STREQ("Ivanov Ivan Ivanivich", vl.get_name());
+	EXPECT_EQ("Ivanov Ivan Ivanivich", vl.get_name());
 	EXPECT_EQ(23, vl.get_age());
 	EXPECT_EQ(78, vl.get_weight());
 
 	Value vl2("Sasha", 28, 72);
 
-//	EXPECT_STREQ("Sahsa", vl2.get_name());
+	EXPECT_EQ("Sahsa", vl2.get_name());
 	EXPECT_EQ(28, vl2.get_age());
 	EXPECT_EQ(72, vl2.get_weight());
 
@@ -63,11 +67,7 @@ TEST (Value, vl_functions)
 
 }
 
-TEST(Hashtable, BasicTest) {
-	HashTable ht;
-	ht.insert("abc", Value());
-	EXPECT_EQ(Value(), ht.at("abc"));
-}
+
 /*TEST (Pairs, pa_functions)
 {
 

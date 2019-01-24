@@ -54,8 +54,12 @@ public:
 	size_t size_ht() const;
 	bool empty() const;
 
-	friend bool operator==(const HashTable & a, const HashTable & b);
-	friend bool operator!=(const HashTable & a, const HashTable & b);
+    bool operator==(const HashTable & a) const;
+	bool operator!=(const HashTable & a) const;
+
+    Pair* getList(int i) const;
+//	friend bool operator==(const HashTable & a, const HashTable & b);
+//	friend bool operator!=(const HashTable & a, const HashTable & b);
 
 	//~HashTable();
 };
