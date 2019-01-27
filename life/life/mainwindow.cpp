@@ -45,15 +45,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setColAndRow(columns, rows);
 
+    timer = new QTimer;
+    timer->setInterval(100);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Time()));
+/*
+    ButRand = new QPushButton(this);
+
+    ButRand->setGeometry(1400, 100, 1440, 120);
+    connect(ButRand,SIGNAL(clicked()), this, SLOT(on_Random_clicked()));
+*/
     f = new Field(columns, rows);
 }
 
 MainWindow::~MainWindow()
 {
+    delete timer;
+
     for(int i = 0; i < columns; i++)
         for(int j = 0; j < rows; j++)
          delete   ui->tableWidget->item(j, i);
 
+ //   delete ButRand;
     delete ui;
     delete f;
 }
@@ -68,6 +80,13 @@ void MainWindow::rePaint()
                  ui->tableWidget->item(j, i)->setBackground(Qt::black);
     repaint();
 
+}
+
+void MainWindow::Time()
+{
+        f->computation();
+        f->step();
+        rePaint();
 }
 
 void MainWindow::on_Random_clicked()
@@ -91,22 +110,10 @@ bool MainWindow::isNotEnd()
 
 void MainWindow::on_Start_clicked()
 {
-    f->computation();
-    QTime t;
-
-    t.start();
-
-    while(isNotEnd())
-    {
-        if(t.elapsed() < 100) continue;
-        t.restart();
-        f->step();
-        rePaint();
-        f->computation();
-
-        if(mousePressEvent())  break;
-    }
-
+    static bool recountOn = false;
+    recountOn = !recountOn;
+    if(recountOn) timer->start();
+    else timer->stop();
 }
 
 void MainWindow::on_Save_clicked()

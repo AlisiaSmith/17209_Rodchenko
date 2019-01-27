@@ -4,7 +4,8 @@
 //#include <unistd.h>
 
 #include <QMainWindow>
-#include <QTime>
+#include <QTimer>
+#include <QPushButton>
 
 #include "field.h"
 
@@ -40,11 +41,17 @@ private slots:
 
     void on_tableWidget_cellClicked(int col, int row);
 
+    void Time();
 private:
     Ui::MainWindow *ui; 
     Field *f;
 
+    QTimer *timer;
+
     int rows;
     int columns;
+
+
+    //QPushButton *ButRand;
 };
 #endif // MAINWINDOW_H
