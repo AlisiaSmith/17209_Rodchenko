@@ -1,11 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-//#include <unistd.h>
+
 
 #include <QMainWindow>
 #include <QTimer>
 #include <QPushButton>
+#include <QString>
+#include <QTableWidget>
 
 #include "field.h"
 
@@ -48,9 +50,12 @@ private:
 
     QTimer *timer;
 
+    QPushButton *but;
+
     int rows;
     int columns;
 
+    QTableWidget *tableWidget;
 
     //QPushButton *ButRand;
 };

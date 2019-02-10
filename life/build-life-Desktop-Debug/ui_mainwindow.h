@@ -16,11 +16,8 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,15 +26,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QPushButton *Random;
-    QPushButton *Step;
-    QPushButton *Start;
-    QPushButton *Save;
-    QPushButton *Load;
-    QPushButton *Clear;
-    QTableWidget *tableWidget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -49,51 +37,10 @@ public:
         MainWindow->resize(1566, 1014);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayoutWidget = new QWidget(centralWidget);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(1310, 150, 201, 431));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        Random = new QPushButton(verticalLayoutWidget);
-        Random->setObjectName(QStringLiteral("Random"));
-
-        verticalLayout->addWidget(Random);
-
-        Step = new QPushButton(verticalLayoutWidget);
-        Step->setObjectName(QStringLiteral("Step"));
-
-        verticalLayout->addWidget(Step);
-
-        Start = new QPushButton(verticalLayoutWidget);
-        Start->setObjectName(QStringLiteral("Start"));
-
-        verticalLayout->addWidget(Start);
-
-        Save = new QPushButton(verticalLayoutWidget);
-        Save->setObjectName(QStringLiteral("Save"));
-
-        verticalLayout->addWidget(Save);
-
-        Load = new QPushButton(verticalLayoutWidget);
-        Load->setObjectName(QStringLiteral("Load"));
-
-        verticalLayout->addWidget(Load);
-
-        Clear = new QPushButton(verticalLayoutWidget);
-        Clear->setObjectName(QStringLiteral("Clear"));
-
-        verticalLayout->addWidget(Clear);
-
-        tableWidget = new QTableWidget(centralWidget);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(10, 10, 41, 31));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1566, 30));
+        menuBar->setGeometry(QRect(0, 0, 1566, 25));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -110,12 +57,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        Random->setText(QApplication::translate("MainWindow", "Random", Q_NULLPTR));
-        Step->setText(QApplication::translate("MainWindow", "Step", Q_NULLPTR));
-        Start->setText(QApplication::translate("MainWindow", "Start", Q_NULLPTR));
-        Save->setText(QApplication::translate("MainWindow", "Save", Q_NULLPTR));
-        Load->setText(QApplication::translate("MainWindow", "Load", Q_NULLPTR));
-        Clear->setText(QApplication::translate("MainWindow", "Clear", Q_NULLPTR));
     } // retranslateUi
 
 };
