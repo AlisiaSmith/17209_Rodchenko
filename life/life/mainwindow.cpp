@@ -1,11 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 void MainWindow::setColAndRow(int col, int row)
 {
-     ui->tableWidget->setColumnCount(col);
-     ui->tableWidget->setRowCount(row);
+    tableWidget->setColumnCount(col);
+    tableWidget->setRowCount(row);
 
     columns = col;
     rows = row;
@@ -13,23 +12,27 @@ void MainWindow::setColAndRow(int col, int row)
     for(int i = 0; i < columns; i++)
         for(int j = 0; j < rows; j++)
         {
-             ui->tableWidget->setItem(j, i, new QTableWidgetItem());
-             ui->tableWidget->item(j, i)->setBackground(Qt::black);
+            tableWidget->setItem(j, i, new QTableWidgetItem());
+            tableWidget->item(j, i)->setBackground(Qt::black);
         }
 
     for(int i = 0; i < columns; i++)
-         ui->tableWidget->setColumnWidth(i, 24);
+        tableWidget->setColumnWidth(i, 24);
 
     for(int i = 0; i < rows; i++)
-         ui->tableWidget->setRowHeight(i, 24);
+        tableWidget->setRowHeight(i, 24);
 
     int maxWidth = 1300;
     int maxHeight = 970;
     if (((columns + 1) * 24 - 16) < maxWidth) maxWidth = (columns + 1) * 24 - 16;
     if (((rows + 1) * 24 - 16) < maxHeight) maxHeight = (rows + 1) * 24 - 16;
 
-     ui->tableWidget->setMinimumWidth(maxWidth);
-     ui->tableWidget->setMinimumHeight(maxHeight);
+    for (int i = 0; i < 6; i++)
+        but[i].setGeometry(maxWidth + 100, 200 + i * 70, 200, 50 );
+
+
+    tableWidget->setMinimumWidth(maxWidth);
+    tableWidget->setMinimumHeight(maxHeight);
 
 }
 
@@ -40,21 +43,38 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     rows = 40; columns = 50;
 
-     ui->tableWidget->verticalHeader()->hide();
-     ui->tableWidget->horizontalHeader()->hide();
+    tableWidget = new QTableWidget(this);
 
-    setColAndRow(columns, rows);
+    tableWidget->verticalHeader()->hide();
+    tableWidget->horizontalHeader()->hide();
 
     timer = new QTimer;
     timer->setInterval(100);
     connect(timer, SIGNAL(timeout()), this, SLOT(Time()));
-/*
-    ButRand = new QPushButton(this);
 
-    ButRand->setGeometry(1400, 100, 1440, 120);
-    connect(ButRand,SIGNAL(clicked()), this, SLOT(on_Random_clicked()));
-*/
-    f = new Field(columns, rows);
+    but = new QPushButton[6];
+
+    QString s[] = {"Random", "Step", "Start", "Save", "Load", "Clear"};
+
+    for (int i = 0; i < 6; i++)
+    {
+        but[i].setParent(this);
+        //but[i].setGeometry(1000, 200 + i * 70, 250, 60 );
+        but[i].setText(s[i]);
+    }
+
+        connect(&but[0],SIGNAL(clicked()), this, SLOT(on_Random_clicked()));
+        connect(&but[1],SIGNAL(clicked()), this, SLOT(on_Step_clicked()));
+        connect(&but[2],SIGNAL(clicked()), this, SLOT(on_Start_clicked()));
+        connect(&but[3],SIGNAL(clicked()), this, SLOT(on_Save_clicked()));
+        connect(&but[4],SIGNAL(clicked()), this, SLOT(on_Load_clicked()));
+        connect(&but[5],SIGNAL(clicked()), this, SLOT(on_Clear_clicked()));
+
+        connect(tableWidget,SIGNAL(cellClicked(int,int)), this, SLOT(on_tableWidget_cellClicked(int, int)));
+
+        setColAndRow(columns, rows);
+
+        f = new Field(columns, rows);
 }
 
 MainWindow::~MainWindow()
@@ -63,9 +83,10 @@ MainWindow::~MainWindow()
 
     for(int i = 0; i < columns; i++)
         for(int j = 0; j < rows; j++)
-         delete   ui->tableWidget->item(j, i);
+         delete  tableWidget->item(j, i);
 
- //   delete ButRand;
+    delete[] but;
+    delete tableWidget;
     delete ui;
     delete f;
 }
@@ -75,9 +96,9 @@ void MainWindow::rePaint()
     for(int i = 0; i < columns; i++)
         for(int j = 0; j <  rows; j++)
             if(f->getCell(i, j).now)
-                 ui->tableWidget->item(j, i)->setBackground(Qt::cyan);
+                tableWidget->item(j, i)->setBackground(Qt::cyan);
             else
-                 ui->tableWidget->item(j, i)->setBackground(Qt::black);
+                tableWidget->item(j, i)->setBackground(Qt::black);
     repaint();
 
 }
@@ -112,8 +133,16 @@ void MainWindow::on_Start_clicked()
 {
     static bool recountOn = false;
     recountOn = !recountOn;
-    if(recountOn) timer->start();
-    else timer->stop();
+    if(recountOn)
+    {
+        timer->start();
+        but[2].setText("Stop");
+    }
+    else
+    {
+        timer->stop();
+        but[2].setText("Start");
+    }
 }
 
 void MainWindow::on_Save_clicked()
@@ -128,7 +157,7 @@ void MainWindow::on_Load_clicked()
 
     for(int i = 0; i < columns; i++)
         for(int j = 0; j < rows; j++)
-         delete    ui->tableWidget->item(j, i);
+         delete   tableWidget->item(j, i);
 
     setColAndRow(f->getWidht(), f->getHeight());
 
