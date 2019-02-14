@@ -61,9 +61,8 @@ bool HashTable::erase(const Key& k)
     while(tmp->get_key() != k)
     {
         tmp_prev = tmp;
-        tmp = &tmp->get_next();
+        tmp = tmp->get_next();
     }
-
     tmp->clear();
 
 	return true;
@@ -95,13 +94,7 @@ bool HashTable::insert(const Key& k, const Value& v)
 
 	int hash = hash_count(k);
 
-    Pair *tmp = &(list[hash]);
-    while (tmp->flag) tmp = tmp->next;
-
-    tmp = new Pair;
-    Pair t(v, k);
-    *tmp = t;
-    tmp->flag = true;
+    list[hash].insert_back(v, k);
 
     return true;
 }
@@ -111,9 +104,9 @@ bool HashTable::contains(const Key& k) const
 	int hash = hash_count(k);
 
     Pair *tmp = &(list[hash]);
-    while(tmp && tmp->flag)
+    while(tmp && tmp->get_next())
         if (tmp->get_key() == k) return true;
-        else tmp = tmp->next;
+        else tmp = tmp->get_next();
 
 	return false;
 }
@@ -135,13 +128,13 @@ Value& HashTable::_at(const Key& k) const
     int hash = hash_count(k);
     Pair *tmp = &(list[hash]);
     while(tmp->get_key() != k)
-        tmp = tmp->next;
+        tmp = tmp->get_next();
     return tmp->get_value();
 }
 const Value& HashTable::at(const Key& k) const { return _at(k); }
 Value& HashTable::at(const Key& k) { return _at(k); }
 
-size_t HashTable::size() const { return used; }
-size_t HashTable::size_ht() const { return quantity; }
+size_t HashTable::size() const      { return used; }
+size_t HashTable::size_ht() const   { return quantity; }
 
-bool HashTable::empty() const { return used == 0; }
+bool HashTable::empty() const       { return used == 0; }

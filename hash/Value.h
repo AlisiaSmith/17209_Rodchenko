@@ -5,7 +5,7 @@
 
 class Value {
 private:
-	string name;
+	std::string name;
 	unsigned int age;
 	unsigned int weight;
 
@@ -16,7 +16,7 @@ public:
 	~Value();
 	void operator=(const Value& v);
 
-	string get_name() const;
+	std::string get_name() const;
 	unsigned int get_age() const;
 	unsigned int get_weight() const;
 
