@@ -1,6 +1,6 @@
 #include "HashTable.h"
 
-int hash_count(const Key& k)
+int HashTable::hash_count(const Key& k) const
 {
     unsigned int len = (unsigned int) k.length();
     unsigned int hash = 0;
@@ -23,36 +23,23 @@ HashTable::~HashTable() { delete[] list; }
 bool HashTable::operator==(const HashTable & a) const
 {
     if (!(quantity == a.size_ht() && used == a.size())) return false;
-    Pair * t1;
-    Pair * t2;
+
     for(int i = 0; i < quantity; i++)
-    {
-        t1 = &(list[i]); t2 = a.getList(i);
-        while(t1 || t2)
-        {
-            if(!(t1 && t2)) return false;
-            if(*t1 == *t2)
-            {
-                t1 = t1->next;
-                t2 = t2->next;
-            }
-        }
-    }
+        if((list[i]) != *(a.getList(i))) return false;
+
     return true;
 }
+bool HashTable::operator!=(const HashTable & a) const { return !(*this == a);   }
 
-bool HashTable::operator!=(const HashTable & a) const { return !HashTable::operator==(a);   }
-
-HashTable& HashTable::operator=(const HashTable& other)
+void HashTable::operator=(const HashTable& other)
 {
-	if(&other == this) return *this;
-	clear();
-	quantity = other.quantity;
+	if(&other == this) return;
+	if(list) delete[] list;
+	quantity = other.size_ht();
 	list = new Pair[quantity];
 	for (int i = 0; i < quantity; ++i)
-		list[i] = other.list[i];
+		if(other.getList(i))    list[i] = *other.getList(i);
 	used = other.used;
-	return *this;
 }
 
 void HashTable::clear()
@@ -74,17 +61,10 @@ bool HashTable::erase(const Key& k)
     while(tmp->get_key() != k)
     {
         tmp_prev = tmp;
-        tmp = tmp->next;
+        tmp = &tmp->get_next();
     }
 
-    if(tmp_prev)
-        tmp_prev->next = tmp->next;
-    else list[hash] = *(tmp->next);
-
-    tmp->next = nullptr;
-    delete tmp;
-
-    used--;
+    tmp->clear();
 
 	return true;
 }
@@ -95,14 +75,18 @@ void HashTable::swap(HashTable& b)
     size_t tmp_q = quantity;
 	int tmp_u = used;
 
-	list = b.list;
-	quantity = b.quantity;
-	used = b.quantity;
+	list = b.getList(0);
+	quantity = b.size_ht();
+	used = b.size();
 
-	b.list = tmp_l;
-	b.quantity = tmp_q;
-	b.used = tmp_u;
+	b.put_list(tmp_l);
+	b.put_size_ht(tmp_q);
+	b.put_size(tmp_u);
 }
+
+void HashTable::put_size(size_t s)         {    used = s;  }
+void HashTable::put_size_ht(size_t q)      {    quantity = q;   }
+void HashTable::put_list(Pair* l)          {    list = l;   }
 
 
 bool HashTable::insert(const Key& k, const Value& v)
@@ -146,7 +130,7 @@ Value& HashTable::_at(const Key& k) const
 	{
 		if (!contains(k)) throw 1;
 	}
-	catch (...) { cout << "You have failed" << endl; }
+	catch (...) { std::cout << "You have failed" << std::endl; }
 
     int hash = hash_count(k);
     Pair *tmp = &(list[hash]);
