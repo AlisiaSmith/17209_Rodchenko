@@ -10,7 +10,8 @@ private:
     Pair *next;
 public:
 
-  Pair() = default;
+    Pair();
+    Pair(const Key& k);
 	Pair(Pair& p);
 	Pair(const Value& v, const Key& k);
 	~Pair();
@@ -30,4 +31,5 @@ public:
 	void clear();
 
 	bool operator==(const Pair& p) const;
+    bool operator!=(const Pair& p) const;
 };

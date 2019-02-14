@@ -1,5 +1,9 @@
 #include "Pair.h"
 
+
+
+Pair::Pair() {  }
+Pair::Pair(const Key& k) : k(k) {  insert();   }
 Pair::Pair(const Value& v, const Key& k) : k(k) { insert(v); }
 Pair::Pair(Pair& p)
 {
@@ -10,8 +14,8 @@ Pair::Pair(Pair& p)
 }
 
 Pair::~Pair() {
-    if (elem != nullptr) delete elem;
-    if(next != nullptr) delete next;
+    if (elem) delete elem;
+    if(next) delete next;
 }
 
 void Pair::operator=(Pair & p)
@@ -24,9 +28,10 @@ void Pair::operator=(Pair & p)
     if(&(p.get_next()))  next = new Pair(p.get_next());
 }
 
-Pair& Pair::get_next() { return *next;  }
-Key Pair::get_key() const { return k; }
-void Pair::put_key(const Key& t) { k = t; }
+Pair& Pair::get_next()              { return *next;  }
+Key Pair::get_key() const           { return k; }
+Value& Pair::get_value() const      { return *elem; }
+void Pair::put_key(const Key& t)    { k = t; }
 
 
 
@@ -40,9 +45,8 @@ void Pair::insert()
 {
     if(elem) delete elem;
 	elem = new Value;
-}
 
-Value& Pair::get_value() const { return *elem; }
+}
 
 void Pair::clear()
 {
@@ -51,4 +55,5 @@ void Pair::clear()
     delete tmp;
 }
 
-bool Pair::operator==(const Pair& p) const { return ((k == p.k) && (elem == p.elem) && (*next == *(p.next))); }
+bool Pair::operator==(const Pair& p) const { return ((k == p.get_key()) && (*elem == p.get_value()) && (*next == *(p.next))); }
+bool Pair::operator!=(const Pair& p) const { return !(*this == p);  }

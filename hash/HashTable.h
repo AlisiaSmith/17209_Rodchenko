@@ -1,11 +1,14 @@
 #pragma once
 
+#include <math.h>
+
 #include "Header.h"
 #include "Pair.h"
 
+
 #define _DEFAUT_HT_SIZE_ 727
 
-int hash_count(const Key& k);
+
 
 class HashTable
 {
@@ -15,8 +18,9 @@ private:
 	Pair *list;
 
 	Value& _at(const Key& k) const;
-	int _find_num(const Key& k, int hash) const;
 public:
+    int hash_count(const Key& k) const;
+
 	HashTable();
 	HashTable(size_t size);
 	~HashTable();
@@ -26,7 +30,7 @@ public:
 	// Обменивает значения двух хэш-таблиц.
 	void swap(HashTable& b);
 
-	HashTable& operator=(const HashTable& b);
+	void operator=(const HashTable& b);
 
 	// Очищает контейнер.
 	void clear();
@@ -58,10 +62,8 @@ public:
 	bool operator!=(const HashTable & a) const;
 
     Pair* getList(int i) const;
-//	friend bool operator==(const HashTable & a, const HashTable & b);
-//	friend bool operator!=(const HashTable & a, const HashTable & b);
 
-	//~HashTable();
+    void put_size(size_t s);
+    void put_size_ht(size_t q);
+    void put_list(Pair* l);
 };
-
-int hash_count(const Key& k);
