@@ -14,7 +14,7 @@ public:
 	Value(const Key name, unsigned int a, unsigned int w);
 	Value(const Value& v);
 	~Value();
-	Value& operator=(const Value& v);
+	void operator=(const Value& v);
 
 	string get_name() const;
 	unsigned int get_age() const;
