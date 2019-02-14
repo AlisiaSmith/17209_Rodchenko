@@ -14,7 +14,7 @@ void Value::operator=(const Value& v)
 	weight = v.weight;
 }
 
-string Value::get_name() const              {	return name;	}
+std::string Value::get_name() const              {	return name;	}
 unsigned int Value::get_age() const         {   return age;     }
 unsigned int Value::get_weight() const      {	return weight;	}
 

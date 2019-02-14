@@ -10,7 +10,7 @@ Pair::Pair(Pair& p)
     elem = new Value;
     *elem = p.get_value();
     k = p.get_key();
-    if(&p.get_next()) next = new Pair(p.get_next());
+    if(p.get_next()) next = new Pair(*p.get_next());
 }
 
 Pair::~Pair() {
@@ -25,14 +25,14 @@ void Pair::operator=(Pair & p)
 	if (next != nullptr) delete next;
 	elem = new Value(p.get_value());
 	k = p.get_key();
-    if(&(p.get_next()))  next = new Pair(p.get_next());
+    if(p.get_next())  next = new Pair(*p.get_next());
 }
 
-Pair& Pair::get_next()              { return *next;  }
+Pair* Pair::get_next()              { return next;  }
 Key Pair::get_key() const           { return k; }
 Value& Pair::get_value() const      { return *elem; }
 void Pair::put_key(const Key& t)    { k = t; }
-
+void Pair::put_next(Pair* p)  { next = p; }
 
 
 void Pair::insert(const Value& v)
@@ -45,8 +45,22 @@ void Pair::insert()
 {
     if(elem) delete elem;
 	elem = new Value;
-
 }
+
+void Pair::insert_back(const Value& v, const Key& k)
+{
+    Pair *tmp = this;
+    Pair *prev_tmp = nullptr;
+    if(tmp)
+    {
+        prev_tmp = tmp;
+        tmp = tmp->get_next();
+    }
+    tmp = new Pair(v, k);
+
+    prev_tmp->put_next(tmp);
+}
+
 
 void Pair::clear()
 {
@@ -54,6 +68,8 @@ void Pair::clear()
     *this = *next;
     delete tmp;
 }
+
+
 
 bool Pair::operator==(const Pair& p) const { return ((k == p.get_key()) && (*elem == p.get_value()) && (*next == *(p.next))); }
 bool Pair::operator!=(const Pair& p) const { return !(*this == p);  }

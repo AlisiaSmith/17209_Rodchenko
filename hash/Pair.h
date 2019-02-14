@@ -21,14 +21,19 @@ public:
 	void operator=(Pair& p);
 
 	Key get_key() const;
-	void put_key(const Key& t);
-	Pair& get_next();
-
-	void insert(const Value& v);
-	void insert();
-
+	Pair* get_next();
 	Value& get_value() const;
+
+    void put_key(const Key& t);
+    void put_next(Pair* p);
+
+
+    void insert(const Value& v);
+	void insert();
+    void insert_back(const Value& v, const Key& k);
+
 	void clear();
+
 
 	bool operator==(const Pair& p) const;
     bool operator!=(const Pair& p) const;
