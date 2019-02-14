@@ -15,7 +15,7 @@ int main (int argc, char ** argv)
  //   Player *s21s = new StrategyOf21Score;
 for(int i = 1; i < argc; i++)
 {
-    pl.push_back(Factory<std::string, decltype(Player)>::getInstance()->createPlayerByID(argv[i]));
+    pl.push_back(Factory<std::string,  Player* (*)()>::getInstance()->createPlayerByID(argv[i]));
 }
 
     Game g(pl, 1);
