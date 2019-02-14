@@ -17,6 +17,8 @@ HashTable::HashTable() : quantity(_DEFAUT_HT_SIZE_) { list = new Pair[_DEFAUT_HT
 HashTable::HashTable(size_t size) : quantity(size) { list = new Pair[size]; }
 HashTable::HashTable(const HashTable& other) : quantity(other.quantity), used(other.used) { for (int i = 0; i < other.quantity; i++)	list[i] = other.list[i]; }
 
+HashTable::~HashTable() { delete[] list; }
+
 
 bool HashTable::operator==(const HashTable & a) const
 {
@@ -40,8 +42,6 @@ bool HashTable::operator==(const HashTable & a) const
 }
 
 bool HashTable::operator!=(const HashTable & a) const { return !HashTable::operator==(a);   }
-
-HashTable::~HashTable() { delete[] list; }
 
 HashTable& HashTable::operator=(const HashTable& other)
 {
