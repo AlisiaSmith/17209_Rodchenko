@@ -2,7 +2,7 @@
 
 
 
-Pair::Pair() {  }
+Pair::Pair(){}
 Pair::Pair(const Key& k) : k(k) {  insert();   }
 Pair::Pair(const Value& v, const Key& k) : k(k) { insert(v); }
 Pair::Pair(Pair& p)
@@ -10,7 +10,7 @@ Pair::Pair(Pair& p)
     elem = new Value;
     *elem = p.get_value();
     k = p.get_key();
-    if(p.get_next()) next = new Pair(*p.get_next());
+    if(p.get_next()) next = new Pair(*(p.get_next()));
 }
 
 Pair::~Pair() {
@@ -18,22 +18,30 @@ Pair::~Pair() {
     if(next) delete next;
 }
 
+bool Pair::is_empty() const { return  !elem;    }
+
 void Pair::operator=(Pair & p)
 {
 	if (this == &p) return;
 	if (elem != nullptr) delete elem;
 	if (next != nullptr) delete next;
-	elem = new Value(p.get_value());
-	k = p.get_key();
-    if(p.get_next())  next = new Pair(*p.get_next());
+	if (!p.is_empty())
+	{
+        elem = new Value(p.get_value());
+        k = p.get_key();
+    }
+	if(p.get_next())  next = new Pair(*p.get_next());
 }
 
-Pair* Pair::get_next()              { return next;  }
+Pair* Pair::get_next() const        { return next;  }
 Key Pair::get_key() const           { return k; }
 Value& Pair::get_value() const      { return *elem; }
 void Pair::put_key(const Key& t)    { k = t; }
-void Pair::put_next(Pair* p)  { next = p; }
-
+void Pair::put_next(Pair p)
+{
+    if(next) delete next;
+    next = new Pair(p);
+}
 
 void Pair::insert(const Value& v)
 {
@@ -58,18 +66,31 @@ void Pair::insert_back(const Value& v, const Key& k)
     }
     tmp = new Pair(v, k);
 
-    prev_tmp->put_next(tmp);
+    prev_tmp->put_next(*tmp);
 }
 
 
 void Pair::clear()
 {
-    Pair *tmp = next;
     *this = *next;
-    delete tmp;
 }
 
 
 
-bool Pair::operator==(const Pair& p) const { return ((k == p.get_key()) && (*elem == p.get_value()) && (*next == *(p.next))); }
+bool Pair::operator==(const Pair& p) const
+{
+    if( this == &p ) return true;
+
+    if(p.is_empty() != is_empty()) return false;
+
+    if(!(p.is_empty() && is_empty())){
+        if(!((k == p.get_key()) && (*elem == p.get_value()))) return false;}
+
+    if (! (next && p.get_next())) {
+        if (next) return false;
+        if (p.get_next()) return false;
+        return true;
+    }
+    return *next == *p.get_next();
+}
 bool Pair::operator!=(const Pair& p) const { return !(*this == p);  }

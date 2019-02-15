@@ -16,9 +16,9 @@ CMakeFiles/hash.dir/Value.cpp.o: ../Header.h
 CMakeFiles/hash.dir/Value.cpp.o: ../Value.cpp
 CMakeFiles/hash.dir/Value.cpp.o: ../Value.h
 
-CMakeFiles/hash.dir/source.cpp.o: ../HashTable.h
-CMakeFiles/hash.dir/source.cpp.o: ../Header.h
-CMakeFiles/hash.dir/source.cpp.o: ../Pair.h
-CMakeFiles/hash.dir/source.cpp.o: ../Value.h
-CMakeFiles/hash.dir/source.cpp.o: ../source.cpp
+CMakeFiles/hash.dir/main.cpp.o: ../HashTable.h
+CMakeFiles/hash.dir/main.cpp.o: ../Header.h
+CMakeFiles/hash.dir/main.cpp.o: ../Pair.h
+CMakeFiles/hash.dir/main.cpp.o: ../Value.h
+CMakeFiles/hash.dir/main.cpp.o: ../main.cpp
 

@@ -61,7 +61,7 @@ public:
     bool operator==(const HashTable & a) const;
 	bool operator!=(const HashTable & a) const;
 
-    Pair* getList(int i) const;
+    Pair& getList(int i) const;
 
     void put_size(size_t s);
     void put_size_ht(size_t q);

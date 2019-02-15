@@ -107,7 +107,7 @@
 		<Unit filename="/home/burger/git/17209_Rodchenko/hash/Value.h">
 			<Option target="hash"/>
 		</Unit>
-		<Unit filename="/home/burger/git/17209_Rodchenko/hash/source.cpp">
+		<Unit filename="/home/burger/git/17209_Rodchenko/hash/main.cpp">
 			<Option target="hash"/>
 		</Unit>
 		<Unit filename="/home/burger/git/17209_Rodchenko/hash/CMakeLists.txt">

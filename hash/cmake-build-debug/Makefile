@@ -204,32 +204,32 @@ Value.cpp.s:
 	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/Value.cpp.s
 .PHONY : Value.cpp.s
 
-source.o: source.cpp.o
+main.o: main.cpp.o
 
-.PHONY : source.o
+.PHONY : main.o
 
 # target to build an object file
-source.cpp.o:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/source.cpp.o
-.PHONY : source.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-source.i: source.cpp.i
+main.i: main.cpp.i
 
-.PHONY : source.i
+.PHONY : main.i
 
 # target to preprocess a source file
-source.cpp.i:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/source.cpp.i
-.PHONY : source.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-source.s: source.cpp.s
+main.s: main.cpp.s
 
-.PHONY : source.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-source.cpp.s:
-	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/source.cpp.s
-.PHONY : source.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/hash.dir/build.make CMakeFiles/hash.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -249,9 +249,9 @@ help:
 	@echo "... Value.o"
 	@echo "... Value.i"
 	@echo "... Value.s"
-	@echo "... source.o"
-	@echo "... source.i"
-	@echo "... source.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

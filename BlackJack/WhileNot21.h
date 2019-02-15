@@ -22,6 +22,6 @@ namespace {
     Player* (*fcnPtr21)() = createStrategyOf21Score;
 
     bool ok21 = Factory<std::string,  Player* (*)()>::getInstance()
-            ->registerPlayer("21score", fcnPtr21);
+            ->registerPlayer("st3", fcnPtr21);
 
 }
