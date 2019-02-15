@@ -17,7 +17,7 @@ Game::~Game(){ delete[] d; }
 
 Card Game::DrawACard()
 {
-  //srand( time( 0 ));
+  srand( time( 0 ));
   int i = rand() % num_of_decks;
   while (d[i].IsEmpty()) i = (i++) % (num_of_decks + 1);
   used++;
@@ -58,7 +58,7 @@ void Game::finish()
     std::cout << "Scores:" << std::endl << std::endl;
 
     for(int i = 0; i < pl.size(); i++)
-        std::cout << pl[i]->WhoAmI()  << ": " << pl[i]->GetScore() << std::endl;
+        std::cout << "Player [" << i + 1 << "]" << ": " << pl[i]->GetScore() << " (" << pl[i]->WhoAmI() << ")" << std::endl;
 
     int Max = 0, i = 0, who = 0;
 
@@ -71,7 +71,7 @@ void Game::finish()
         }
 
     std::cout << std::endl;
-    std::cout << pl[who]->WhoAmI()  << " - winer!!!" << std::endl;
+    std::cout << "Player [" << who +1 << "] (" << pl[who]->WhoAmI()  << ") - winer!!!" << std::endl;
 
 }
 

@@ -11,7 +11,7 @@ add_executable(hash
         Header.h
         Pair.cpp
         Pair.h
-        source.cpp
+        main.cpp
         Value.cpp
         Value.h)
 

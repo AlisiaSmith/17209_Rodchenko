@@ -13,7 +13,7 @@ void MainWindow::setColAndRow(int col, int row)
         for(int j = 0; j < rows; j++)
         {
             tableWidget->setItem(j, i, new QTableWidgetItem());
-            tableWidget->item(j, i)->setBackground(Qt::black);
+            tableWidget->item(j, i)->setBackground(Qt::gray);
         }
 
     for(int i = 0; i < columns; i++)
@@ -30,10 +30,11 @@ void MainWindow::setColAndRow(int col, int row)
     for (int i = 0; i < 6; i++)
         but[i].setGeometry(maxWidth + 100, 200 + i * 70, 200, 50 );
 
-
     tableWidget->setMinimumWidth(maxWidth);
     tableWidget->setMinimumHeight(maxHeight);
 
+    tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tableWidget->setSelectionMode(QAbstractItemView::NoSelection);
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -81,12 +82,12 @@ MainWindow::~MainWindow()
 {
     delete timer;
 
-    for(int i = 0; i < columns; i++)
-        for(int j = 0; j < rows; j++)
-         delete  tableWidget->item(j, i);
+//    for(int i = 0; i < columns; i++)
+//        for(int j = 0; j < rows; j++)
+//         delete  tableWidget->item(j, i);
 
     delete[] but;
-    delete tableWidget;
+    //delete tableWidget;
     delete ui;
     delete f;
 }
@@ -98,8 +99,7 @@ void MainWindow::rePaint()
             if(f->getCell(i, j).now)
                 tableWidget->item(j, i)->setBackground(Qt::cyan);
             else
-                tableWidget->item(j, i)->setBackground(Qt::black);
-    repaint();
+                tableWidget->item(j, i)->setBackground(Qt::gray);
 
 }
 
@@ -137,11 +137,19 @@ void MainWindow::on_Start_clicked()
     {
         timer->start();
         but[2].setText("Stop");
+        for(int i = 0; i < 6; i++)
+           but[i].setEnabled(false);
+        but[2].setEnabled(true);
+
+        tableWidget->setEnabled(false);
     }
     else
     {
         timer->stop();
         but[2].setText("Start");
+        for(int i = 0; i < 6; i++)
+           but[i].setEnabled(true);
+        tableWidget->setEnabled(true);
     }
 }
 

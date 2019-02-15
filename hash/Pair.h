@@ -6,8 +6,8 @@
 struct Pair {
 private:
 	Key k;
-	Value *elem;
-    Pair *next;
+	Value *elem = nullptr;
+    Pair *next = nullptr;
 public:
 
     Pair();
@@ -21,11 +21,11 @@ public:
 	void operator=(Pair& p);
 
 	Key get_key() const;
-	Pair* get_next();
+	Pair* get_next() const;
 	Value& get_value() const;
 
     void put_key(const Key& t);
-    void put_next(Pair* p);
+    void put_next(Pair p);
 
 
     void insert(const Value& v);
@@ -34,7 +34,7 @@ public:
 
 	void clear();
 
-
+    bool is_empty() const;
 	bool operator==(const Pair& p) const;
     bool operator!=(const Pair& p) const;
 };

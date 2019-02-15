@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/hash.dir/HashTable.cpp.o"
   "CMakeFiles/hash.dir/Pair.cpp.o"
-  "CMakeFiles/hash.dir/source.cpp.o"
+  "CMakeFiles/hash.dir/main.cpp.o"
   "CMakeFiles/hash.dir/Value.cpp.o"
   "hash.pdb"
   "hash"

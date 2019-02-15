@@ -10,12 +10,18 @@ int HashTable::hash_count(const Key& k) const
     return hash;
 }
 
-Pair* HashTable::getList(int i) const { return &list[i]; }
+Pair& HashTable::getList(int i) const { return list[i]; }
 
 
 HashTable::HashTable() : quantity(_DEFAUT_HT_SIZE_) { list = new Pair[_DEFAUT_HT_SIZE_]; }
 HashTable::HashTable(size_t size) : quantity(size) { list = new Pair[size]; }
-HashTable::HashTable(const HashTable& other) : quantity(other.quantity), used(other.used) { for (int i = 0; i < other.quantity; i++)	list[i] = other.list[i]; }
+HashTable::HashTable(const HashTable& other) : quantity(other.size_ht()), used(other.size())
+{
+    list  = new Pair[quantity];
+    for (int i = 0; i < other.quantity; i++)
+        if (other.list[i].is_empty())
+            list[i] = other.list[i];
+}
 
 HashTable::~HashTable() { delete[] list; }
 
@@ -25,7 +31,7 @@ bool HashTable::operator==(const HashTable & a) const
     if (!(quantity == a.size_ht() && used == a.size())) return false;
 
     for(int i = 0; i < quantity; i++)
-        if((list[i]) != *(a.getList(i))) return false;
+        if((list[i]) != a.getList(i)) return false;
 
     return true;
 }
@@ -37,8 +43,8 @@ void HashTable::operator=(const HashTable& other)
 	if(list) delete[] list;
 	quantity = other.size_ht();
 	list = new Pair[quantity];
-	for (int i = 0; i < quantity; ++i)
-		if(other.getList(i))    list[i] = *other.getList(i);
+	for (int i = 0; i < quantity; i++)
+		if(&other.getList(i))    list[i] = other.getList(i);
 	used = other.used;
 }
 
@@ -74,7 +80,7 @@ void HashTable::swap(HashTable& b)
     size_t tmp_q = quantity;
 	int tmp_u = used;
 
-	list = b.getList(0);
+	list = &b.getList(0);
 	quantity = b.size_ht();
 	used = b.size();
 

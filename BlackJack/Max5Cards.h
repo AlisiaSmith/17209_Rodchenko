@@ -21,6 +21,6 @@ namespace {
     Player* (*fcnPtr5)() = createStrategyMax5;
 
     bool ok5 = Factory<std::string,  Player* (*)()>::getInstance()
-            ->registerPlayer("max5", fcnPtr5);
+            ->registerPlayer("st4", fcnPtr5);
 
 }

@@ -7,7 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/burger/git/17209_Rodchenko/hash/HashTable.cpp" "/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/hash.dir/HashTable.cpp.o"
   "/home/burger/git/17209_Rodchenko/hash/Pair.cpp" "/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/hash.dir/Pair.cpp.o"
   "/home/burger/git/17209_Rodchenko/hash/Value.cpp" "/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/hash.dir/Value.cpp.o"
-  "/home/burger/git/17209_Rodchenko/hash/source.cpp" "/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/hash.dir/source.cpp.o"
+  "/home/burger/git/17209_Rodchenko/hash/main.cpp" "/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/hash.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
