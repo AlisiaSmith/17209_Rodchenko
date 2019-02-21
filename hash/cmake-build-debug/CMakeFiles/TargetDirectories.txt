@@ -1,3 +1,0 @@
-/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/burger/git/17209_Rodchenko/hash/cmake-build-debug/CMakeFiles/hash.dir
